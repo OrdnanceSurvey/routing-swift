@@ -10,6 +10,8 @@
 		45E535231C849D1C005E276C /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E535221C849D1C005E276C /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E5352A1C849D1C005E276C /* Routing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; };
 		45E5352F1C849D1C005E276C /* RoutingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E5352E1C849D1C005E276C /* RoutingTests.swift */; };
+		45E5353A1C84A254005E276C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535391C84A254005E276C /* Nimble.framework */; };
+		45E5353C1C84A26B005E276C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535391C84A254005E276C /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +24,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		45E5353B1C84A25D005E276C /* Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				45E5353C1C84A26B005E276C /* Nimble.framework in Frameworks */,
+			);
+			name = Frameworks;
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		45E5351F1C849D1C005E276C /* Routing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Routing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E535221C849D1C005E276C /* Routing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Routing.h; sourceTree = "<group>"; };
@@ -29,6 +45,7 @@
 		45E535291C849D1C005E276C /* RoutingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoutingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E5352E1C849D1C005E276C /* RoutingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingTests.swift; sourceTree = "<group>"; };
 		45E535301C849D1C005E276C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45E535391C84A254005E276C /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -44,6 +61,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E5352A1C849D1C005E276C /* Routing.framework in Frameworks */,
+				45E5353A1C84A254005E276C /* Nimble.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -80,6 +98,7 @@
 		45E5352D1C849D1C005E276C /* RoutingTests */ = {
 			isa = PBXGroup;
 			children = (
+				45E535391C84A254005E276C /* Nimble.framework */,
 				45E5352E1C849D1C005E276C /* RoutingTests.swift */,
 				45E535301C849D1C005E276C /* Info.plist */,
 			);
@@ -125,6 +144,7 @@
 				45E535251C849D1C005E276C /* Sources */,
 				45E535261C849D1C005E276C /* Frameworks */,
 				45E535271C849D1C005E276C /* Resources */,
+				45E5353B1C84A25D005E276C /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -340,6 +360,10 @@
 		45E535371C849D1C005E276C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = RoutingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.os.RoutingTests;
@@ -350,6 +374,10 @@
 		45E535381C849D1C005E276C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = RoutingTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.os.RoutingTests;
@@ -376,6 +404,7 @@
 				45E535351C849D1C005E276C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		45E535361C849D1C005E276C /* Build configuration list for PBXNativeTarget "RoutingTests" */ = {
 			isa = XCConfigurationList;
@@ -384,6 +413,7 @@
 				45E535381C849D1C005E276C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
