@@ -79,7 +79,7 @@ class RoutingServiceTests: XCTestCase {
     func testItSendsTheRequestCorrectlyForVehicleRouting() {
         let expectation = expectationWithDescription("Request Received")
         stub(stubTest()) { (request) -> OHHTTPStubsResponse in
-            return fixture(Bundle().pathForResource("canned-response", ofType: "json")!, headers: nil)
+            return OHHTTPStubsResponse(error: NSError(domain: "", code: 0, userInfo: nil))
         }
         service.routeBetween(points: [Point(x: 437165, y: 115640), Point(x: 437387, y: 115174)]) { result in
             expectation.fulfill()
@@ -90,7 +90,7 @@ class RoutingServiceTests: XCTestCase {
     func testItSendsTheRequestCorrectlyForNonVehicleRouting() {
         let expectation = expectationWithDescription("Request Received")
         stub(stubTest(.Foot, srs: .EPSG_3857)) { (request) -> OHHTTPStubsResponse in
-            return fixture(Bundle().pathForResource("canned-response", ofType: "json")!, headers: nil)
+            return OHHTTPStubsResponse(error: NSError(domain: "", code: 0, userInfo: nil))
         }
         service.routeBetween(points: [Point(x: 437165, y: 115640), Point(x: 437387, y: 115174)]) { result in
             expectation.fulfill()
