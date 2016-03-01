@@ -21,17 +21,17 @@ public class OSRoutingService: NSObject {
      - parameter vehicleType: The vehicle type to use
      - parameter crs:         The Coordinate Reference System to use, or nil to use the default, EPSG:3857
      */
-    public init(vehicleType: String, crs: String?) {
+    public init(apiKey: String, vehicleType: String, crs: String?) {
         guard let vehicle = VehicleType(rawValue: vehicleType) else {
             fatalError("Invalid vehicle type")
         }
         if crs == nil {
-            routingService = RoutingService(vehicleType: vehicle)
+            routingService = RoutingService(apiKey: apiKey, vehicleType: vehicle)
         } else {
             guard let coordSys = CoordinateReferenceSystem(rawValue: crs!) else {
                 fatalError("Invalid coordinate reference system")
             }
-            routingService = RoutingService(vehicleType: vehicle, crs: coordSys)
+            routingService = RoutingService(apiKey: apiKey, vehicleType: vehicle, crs: coordSys)
         }
         super.init()
     }

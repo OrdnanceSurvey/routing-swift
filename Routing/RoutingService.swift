@@ -22,13 +22,24 @@ public enum VehicleType: String {
 /// Class to use to fetch routing information
 public class RoutingService {
 
+    /// The API key to use
+    let apiKey: String
+
     /// The vehicle type to use
     let vehicleType: VehicleType
 
     /// The CRS to use
     let crs: CoordinateReferenceSystem
 
-    public init(vehicleType: VehicleType, crs: CoordinateReferenceSystem = .EPSG_3857) {
+    /**
+     Initialiser
+
+     - parameter apiKey:      The API key to use
+     - parameter vehicleType: The vehicle type to use
+     - parameter crs:         The CRS to use. Defaults to EPSG:3857
+     */
+    public init(apiKey: String, vehicleType: VehicleType, crs: CoordinateReferenceSystem = .EPSG_3857) {
+        self.apiKey = apiKey
         self.vehicleType = vehicleType
         self.crs = crs
     }
