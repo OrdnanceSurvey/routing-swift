@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		45E535231C849D1C005E276C /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E535221C849D1C005E276C /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E5352A1C849D1C005E276C /* Routing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; };
-		45E5352F1C849D1C005E276C /* RoutingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E5352E1C849D1C005E276C /* RoutingTests.swift */; };
 		45E5353A1C84A254005E276C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535391C84A254005E276C /* Nimble.framework */; };
 		45E5353C1C84A26B005E276C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535391C84A254005E276C /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45E5353E1C84A42D005E276C /* Fetch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5353D1C84A42D005E276C /* Fetch.framework */; };
@@ -21,6 +20,7 @@
 		45E535491C859B16005E276C /* Route+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E535481C859B16005E276C /* Route+Parsing.swift */; };
 		45E5354B1C859C7A005E276C /* RoutingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E5354A1C859C7A005E276C /* RoutingService.swift */; };
 		45E5354D1C85AE86005E276C /* OSRoutingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E5354C1C85AE86005E276C /* OSRoutingService.swift */; };
+		45E5354F1C85B527005E276C /* RoutingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E5354E1C85B527005E276C /* RoutingServiceTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +53,6 @@
 		45E535221C849D1C005E276C /* Routing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Routing.h; sourceTree = "<group>"; };
 		45E535241C849D1C005E276C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45E535291C849D1C005E276C /* RoutingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RoutingTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		45E5352E1C849D1C005E276C /* RoutingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoutingTests.swift; sourceTree = "<group>"; };
 		45E535301C849D1C005E276C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		45E535391C84A254005E276C /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = SOURCE_ROOT; };
 		45E5353D1C84A42D005E276C /* Fetch.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fetch.framework; path = Carthage/Build/iOS/Fetch.framework; sourceTree = SOURCE_ROOT; };
@@ -64,6 +63,7 @@
 		45E535481C859B16005E276C /* Route+Parsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Route+Parsing.swift"; sourceTree = "<group>"; };
 		45E5354A1C859C7A005E276C /* RoutingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingService.swift; sourceTree = "<group>"; };
 		45E5354C1C85AE86005E276C /* OSRoutingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSRoutingService.swift; sourceTree = "<group>"; };
+		45E5354E1C85B527005E276C /* RoutingServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingServiceTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,8 +126,8 @@
 			isa = PBXGroup;
 			children = (
 				45E535391C84A254005E276C /* Nimble.framework */,
-				45E5352E1C849D1C005E276C /* RoutingTests.swift */,
 				45E535301C849D1C005E276C /* Info.plist */,
+				45E5354E1C85B527005E276C /* RoutingServiceTests.swift */,
 			);
 			path = RoutingTests;
 			sourceTree = "<group>";
@@ -255,7 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				45E5352F1C849D1C005E276C /* RoutingTests.swift in Sources */,
+				45E5354F1C85B527005E276C /* RoutingServiceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -405,6 +405,7 @@
 		45E535371C849D1C005E276C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -413,12 +414,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.os.RoutingTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		45E535381C849D1C005E276C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
