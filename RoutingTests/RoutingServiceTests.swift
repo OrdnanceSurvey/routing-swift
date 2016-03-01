@@ -84,7 +84,7 @@ class RoutingServiceTests: XCTestCase {
         service.routeBetween(points: [Point(x: 437165, y: 115640), Point(x: 437387, y: 115174)]) { result in
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(1.0, handler: nil)
+        waitForExpectationsWithTimeout(2.0, handler: nil)
     }
 
     func testItSendsTheRequestCorrectlyForNonVehicleRouting() {
@@ -95,6 +95,6 @@ class RoutingServiceTests: XCTestCase {
         service.routeBetween(points: [Point(x: 437165, y: 115640), Point(x: 437387, y: 115174)]) { result in
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(1.0, handler: nil)
+        waitForExpectationsWithTimeout(2.0, handler: nil)
     }
 }
