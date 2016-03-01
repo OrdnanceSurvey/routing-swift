@@ -16,7 +16,7 @@ public enum VehicleType: String {
     case Car = "car"
     case Emv = "emv"
     case Foot = "foot"
-    case MTB = "mtb"
+    case MountainBike = "mtb"
 }
 
 /// Class to use to fetch routing information

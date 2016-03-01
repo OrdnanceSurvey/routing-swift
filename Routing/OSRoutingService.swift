@@ -74,7 +74,7 @@ public extension OSRoutingService {
      MTB vehicle type
      */
     public static func mtbVehicleType() -> String {
-        return VehicleType.MTB.rawValue
+        return VehicleType.MountainBike.rawValue
     }
 
     /**
