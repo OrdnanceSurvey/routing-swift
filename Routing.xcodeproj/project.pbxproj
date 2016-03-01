@@ -18,6 +18,7 @@
 		45E535431C858784005E276C /* CoordinateReferenceSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E535421C858784005E276C /* CoordinateReferenceSystem.swift */; };
 		45E535451C858BF3005E276C /* Instruction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E535441C858BF3005E276C /* Instruction.swift */; };
 		45E535471C859741005E276C /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E535461C859741005E276C /* Geometry.swift */; };
+		45E535491C859B16005E276C /* Route+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E535481C859B16005E276C /* Route+Parsing.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		45E535421C858784005E276C /* CoordinateReferenceSystem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateReferenceSystem.swift; sourceTree = "<group>"; };
 		45E535441C858BF3005E276C /* Instruction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Instruction.swift; sourceTree = "<group>"; };
 		45E535461C859741005E276C /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
+		45E535481C859B16005E276C /* Route+Parsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Route+Parsing.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				45E535421C858784005E276C /* CoordinateReferenceSystem.swift */,
 				45E535441C858BF3005E276C /* Instruction.swift */,
 				45E535461C859741005E276C /* Geometry.swift */,
+				45E535481C859B16005E276C /* Route+Parsing.swift */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -234,6 +237,7 @@
 			files = (
 				45E535451C858BF3005E276C /* Instruction.swift in Sources */,
 				45E535471C859741005E276C /* Geometry.swift in Sources */,
+				45E535491C859B16005E276C /* Route+Parsing.swift in Sources */,
 				45E535431C858784005E276C /* CoordinateReferenceSystem.swift in Sources */,
 				45E535411C85802A005E276C /* Route.swift in Sources */,
 			);

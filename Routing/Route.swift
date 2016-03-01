@@ -10,7 +10,7 @@ import Foundation
 
 /// Represents a parsed route returned from the routing API
 @objc(OSRoute)
-public class Route: NSObject {
+public final class Route: NSObject {
     /// The CRS for the route
     public let crs: CoordinateReferenceSystem
     public var crsString: String {
