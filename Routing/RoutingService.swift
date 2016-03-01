@@ -19,6 +19,10 @@ public enum VehicleType: String {
     case MountainBike = "mtb"
 }
 
+public enum RoutingError: ErrorType {
+    case TooFewPoints
+}
+
 /// Class to use to fetch routing information
 public class RoutingService {
 
@@ -51,6 +55,9 @@ public class RoutingService {
      - parameter completion: The completion block to call
      */
     public func routeBetween(points points: [Point], completion: (Result<Route> -> Void)) {
-
+        if points.count < 2 {
+            completion(.Failure(RoutingError.TooFewPoints))
+            return
+        }
     }
 }
