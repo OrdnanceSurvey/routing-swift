@@ -7,6 +7,9 @@
 //
 
 import XCTest
+import Nimble
+import OHHTTPStubs
+@testable import Routing
 
 class RoutingServiceTests: XCTestCase {
 
