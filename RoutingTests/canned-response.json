@@ -35,6 +35,8 @@
           ]
         },
         {
+          "annotation_text": "Annotation",
+          "annotation_importance": 7,
           "sign": 6,
           "turn_angle": 0.57,
           "exit_number": 4,

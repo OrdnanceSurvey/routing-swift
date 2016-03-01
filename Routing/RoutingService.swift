@@ -30,6 +30,8 @@ public enum VehicleType: String {
 
 public enum RoutingError: ErrorType {
     case TooFewPoints
+    case NoDataReceived
+    case FailedToParseJSON
 }
 
 /// Class to use to fetch routing information

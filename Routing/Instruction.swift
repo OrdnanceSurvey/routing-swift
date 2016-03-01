@@ -37,7 +37,13 @@ public class Instruction: NSObject {
     /// How important the additional information is to the user
     public let annotationImportance: Int?
 
-    init(sign: Int, text: String, time: Double, distance: Double, startPoint: Int, endPoint: Int, annotationText: String? = nil, annotationImportance: Int? = nil) {
+    /// The turning angle for the instruction
+    public let turnAngle: Double?
+
+    /// Exit number for the instruction, if this is a roundabout
+    public let exitNumber: Int?
+
+    init(sign: Int, text: String, time: Double, distance: Double, startPoint: Int, endPoint: Int, annotationText: String? = nil, annotationImportance: Int? = nil, turnAngle: Double? = nil, exitNumber: Int? = nil) {
         self.sign = sign
         self.text = text
         self.time = time
@@ -46,6 +52,8 @@ public class Instruction: NSObject {
         self.endPoint = endPoint
         self.annotationText = annotationText
         self.annotationImportance = annotationImportance
+        self.turnAngle = turnAngle
+        self.exitNumber = exitNumber
         super.init()
     }
 }

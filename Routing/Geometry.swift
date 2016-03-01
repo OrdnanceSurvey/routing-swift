@@ -37,3 +37,29 @@ public class BoundingBox: NSObject {
         super.init()
     }
 }
+
+extension Point {
+    public override func isEqual(object: AnyObject?) -> Bool {
+        guard let otherObject = object as? Point else {
+            return false
+        }
+        return self == otherObject
+    }
+}
+
+extension BoundingBox {
+    public override func isEqual(object: AnyObject?) -> Bool {
+        guard let otherObject = object as? BoundingBox else {
+            return false
+        }
+        return self == otherObject
+    }
+}
+
+func ==(lhs: Point, rhs: Point) -> Bool {
+    return lhs.x == rhs.x && lhs.y == rhs.y
+}
+
+func ==(lhs: BoundingBox, rhs: BoundingBox) -> Bool {
+    return lhs.bottomRight == rhs.bottomRight && lhs.topLeft == rhs.topLeft
+}
