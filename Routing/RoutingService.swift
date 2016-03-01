@@ -17,6 +17,15 @@ public enum VehicleType: String {
     case Emv = "emv"
     case Foot = "foot"
     case MountainBike = "mtb"
+
+    private func path() -> String {
+        switch self {
+        case .Car, .Emv:
+            return "routing_api"
+        case .Foot, .MountainBike:
+            return "nonvehicle_routing_api"
+        }
+    }
 }
 
 public enum RoutingError: ErrorType {
@@ -59,5 +68,25 @@ public class RoutingService {
             completion(.Failure(RoutingError.TooFewPoints))
             return
         }
+        let request = Request(url: urlForPoints(points))
+        get(request) { (result: Result<Route>) in
+            completion(result)
+        }
+    }
+
+    private func urlForPoints(points: [Point]) -> NSURL {
+        let components = NSURLComponents()
+        components.scheme = "https"
+        components.host = "api.ordnancesurvey.co.uk"
+        components.path = "/\(vehicleType.path())/route"
+        var queryItems = [
+            NSURLQueryItem(name: "apikey", value: apiKey),
+            NSURLQueryItem(name: "points_encoded", value: "false"),
+            NSURLQueryItem(name: "srs", value: crs.rawValue),
+            NSURLQueryItem(name: "vehicle", value: vehicleType.rawValue),
+        ]
+        queryItems.appendContentsOf(points.map({ NSURLQueryItem(name: "point", value: "\($0.x),\($0.y)") }))
+        components.queryItems = queryItems
+        return components.URL!
     }
 }

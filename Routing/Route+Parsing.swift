@@ -10,6 +10,6 @@ import Fetch
 
 extension Route: Parsable {
     public static func parse(fromData data: NSData?, withStatus status: Int) -> Result<Route> {
-        fatalError("Unimplemented")
+        return .Failure(NSError(domain: "unimplemented", code: 1, userInfo: nil))
     }
 }

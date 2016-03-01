@@ -44,4 +44,57 @@ class RoutingServiceTests: XCTestCase {
         }
     }
 
+    func containsQueryItems(items: [NSURLQueryItem]) -> OHHTTPStubsTestBlock {
+        return { req in
+            guard let url = req.URL else {
+                return false
+            }
+            let comps = NSURLComponents(URL: url, resolvingAgainstBaseURL: true)
+            guard let queryItems = comps?.queryItems else {
+                return false
+            }
+            for item in items {
+                if queryItems.filter({ $0 == item}).count == 0 {
+                    return false
+                }
+            }
+            return true
+        }
+    }
+
+    func stubTest(vehicle: VehicleType = .Car, srs: CoordinateReferenceSystem = .EPSG_27700) -> OHHTTPStubsTestBlock {
+        return isScheme("https") &&
+            isHost("api.ordnancesurvey.co.uk") &&
+            isPath("/\(vehicle == .Car ? "routing_api" : "nonvehicle_routing_api")/route") &&
+            containsQueryItems([
+                NSURLQueryItem(name: "apikey", value: "test-key"),
+                NSURLQueryItem(name: "point", value: "437165,115640"),
+                NSURLQueryItem(name: "point", value: "437387,115174"),
+                NSURLQueryItem(name: "srs", value: srs.rawValue),
+                NSURLQueryItem(name: "points_encoded", value: "false"),
+                NSURLQueryItem(name: "vehicle", value: vehicle.rawValue)
+                ])
+    }
+
+    func testItSendsTheRequestCorrectlyForVehicleRouting() {
+        let expectation = expectationWithDescription("Request Received")
+        stub(stubTest()) { (request) -> OHHTTPStubsResponse in
+            return fixture(Bundle().pathForResource("canned-response", ofType: "json")!, headers: nil)
+        }
+        service.routeBetween(points: [Point(x: 437165, y: 115640), Point(x: 437387, y: 115174)]) { result in
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(1.0, handler: nil)
+    }
+
+    func testItSendsTheRequestCorrectlyForNonVehicleRouting() {
+        let expectation = expectationWithDescription("Request Received")
+        stub(stubTest(.Foot, srs: .EPSG_3857)) { (request) -> OHHTTPStubsResponse in
+            return fixture(Bundle().pathForResource("canned-response", ofType: "json")!, headers: nil)
+        }
+        service.routeBetween(points: [Point(x: 437165, y: 115640), Point(x: 437387, y: 115174)]) { result in
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(1.0, handler: nil)
+    }
 }

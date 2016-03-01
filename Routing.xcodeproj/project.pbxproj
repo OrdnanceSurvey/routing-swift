@@ -23,6 +23,8 @@
 		45E5354F1C85B527005E276C /* RoutingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E5354E1C85B527005E276C /* RoutingServiceTests.swift */; };
 		45E535511C85B5A4005E276C /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535501C85B5A4005E276C /* OHHTTPStubs.framework */; };
 		45E535521C85B5AF005E276C /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535501C85B5A4005E276C /* OHHTTPStubs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45E535541C85C2AD005E276C /* canned-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 45E535531C85C2AD005E276C /* canned-response.json */; };
+		45E535561C85C2F9005E276C /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E535551C85C2F9005E276C /* TestHelpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +70,8 @@
 		45E5354C1C85AE86005E276C /* OSRoutingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSRoutingService.swift; sourceTree = "<group>"; };
 		45E5354E1C85B527005E276C /* RoutingServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingServiceTests.swift; sourceTree = "<group>"; };
 		45E535501C85B5A4005E276C /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = SOURCE_ROOT; };
+		45E535531C85C2AD005E276C /* canned-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "canned-response.json"; sourceTree = "<group>"; };
+		45E535551C85C2F9005E276C /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,7 +137,9 @@
 				45E535501C85B5A4005E276C /* OHHTTPStubs.framework */,
 				45E535391C84A254005E276C /* Nimble.framework */,
 				45E535301C849D1C005E276C /* Info.plist */,
+				45E535531C85C2AD005E276C /* canned-response.json */,
 				45E5354E1C85B527005E276C /* RoutingServiceTests.swift */,
+				45E535551C85C2F9005E276C /* TestHelpers.swift */,
 			);
 			path = RoutingTests;
 			sourceTree = "<group>";
@@ -237,6 +243,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45E535541C85C2AD005E276C /* canned-response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E5354F1C85B527005E276C /* RoutingServiceTests.swift in Sources */,
+				45E535561C85C2F9005E276C /* TestHelpers.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
