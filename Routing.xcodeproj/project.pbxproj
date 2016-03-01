@@ -20,6 +20,7 @@
 		45E535471C859741005E276C /* Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E535461C859741005E276C /* Geometry.swift */; };
 		45E535491C859B16005E276C /* Route+Parsing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E535481C859B16005E276C /* Route+Parsing.swift */; };
 		45E5354B1C859C7A005E276C /* RoutingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E5354A1C859C7A005E276C /* RoutingService.swift */; };
+		45E5354D1C85AE86005E276C /* OSRoutingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E5354C1C85AE86005E276C /* OSRoutingService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		45E535461C859741005E276C /* Geometry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Geometry.swift; sourceTree = "<group>"; };
 		45E535481C859B16005E276C /* Route+Parsing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Route+Parsing.swift"; sourceTree = "<group>"; };
 		45E5354A1C859C7A005E276C /* RoutingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoutingService.swift; sourceTree = "<group>"; };
+		45E5354C1C85AE86005E276C /* OSRoutingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSRoutingService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +117,7 @@
 				45E535461C859741005E276C /* Geometry.swift */,
 				45E535481C859B16005E276C /* Route+Parsing.swift */,
 				45E5354A1C859C7A005E276C /* RoutingService.swift */,
+				45E5354C1C85AE86005E276C /* OSRoutingService.swift */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -239,6 +242,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E5354B1C859C7A005E276C /* RoutingService.swift in Sources */,
+				45E5354D1C85AE86005E276C /* OSRoutingService.swift in Sources */,
 				45E535451C858BF3005E276C /* Instruction.swift in Sources */,
 				45E535471C859741005E276C /* Geometry.swift in Sources */,
 				45E535491C859B16005E276C /* Route+Parsing.swift in Sources */,
