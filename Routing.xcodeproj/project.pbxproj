@@ -31,6 +31,9 @@
 		45FD1E0C1C8727AD00196682 /* GeometryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45FD1E0B1C8727AD00196682 /* GeometryTests.swift */; };
 		45FD1E0E1C8729A200196682 /* broken-bounding-box.json in Resources */ = {isa = PBXBuildFile; fileRef = 45FD1E0D1C8729A200196682 /* broken-bounding-box.json */; };
 		45FD1E101C872A3100196682 /* incomplete-instruction.json in Resources */ = {isa = PBXBuildFile; fileRef = 45FD1E0F1C872A3100196682 /* incomplete-instruction.json */; };
+		45FD1E131C872B2200196682 /* missing-coordinates.json in Resources */ = {isa = PBXBuildFile; fileRef = 45FD1E111C872B2200196682 /* missing-coordinates.json */; };
+		45FD1E141C872B2200196682 /* missing-instructions.json in Resources */ = {isa = PBXBuildFile; fileRef = 45FD1E121C872B2200196682 /* missing-instructions.json */; };
+		45FD1E161C872BCB00196682 /* broken-coordinate.json in Resources */ = {isa = PBXBuildFile; fileRef = 45FD1E151C872BCB00196682 /* broken-coordinate.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,6 +87,9 @@
 		45FD1E0B1C8727AD00196682 /* GeometryTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeometryTests.swift; sourceTree = "<group>"; };
 		45FD1E0D1C8729A200196682 /* broken-bounding-box.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "broken-bounding-box.json"; sourceTree = "<group>"; };
 		45FD1E0F1C872A3100196682 /* incomplete-instruction.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "incomplete-instruction.json"; sourceTree = "<group>"; };
+		45FD1E111C872B2200196682 /* missing-coordinates.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "missing-coordinates.json"; sourceTree = "<group>"; };
+		45FD1E121C872B2200196682 /* missing-instructions.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "missing-instructions.json"; sourceTree = "<group>"; };
+		45FD1E151C872BCB00196682 /* broken-coordinate.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "broken-coordinate.json"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +160,9 @@
 				45E535531C85C2AD005E276C /* canned-response.json */,
 				45FD1E0D1C8729A200196682 /* broken-bounding-box.json */,
 				45FD1E0F1C872A3100196682 /* incomplete-instruction.json */,
+				45FD1E111C872B2200196682 /* missing-coordinates.json */,
+				45FD1E121C872B2200196682 /* missing-instructions.json */,
+				45FD1E151C872BCB00196682 /* broken-coordinate.json */,
 				45E5354E1C85B527005E276C /* RoutingServiceTests.swift */,
 				45E535551C85C2F9005E276C /* TestHelpers.swift */,
 				45BDFFD41C85CCEC003B419C /* RouteParsingTests.swift */,
@@ -264,6 +273,9 @@
 			files = (
 				45FD1E0E1C8729A200196682 /* broken-bounding-box.json in Resources */,
 				45FD1E101C872A3100196682 /* incomplete-instruction.json in Resources */,
+				45FD1E131C872B2200196682 /* missing-coordinates.json in Resources */,
+				45FD1E141C872B2200196682 /* missing-instructions.json in Resources */,
+				45FD1E161C872BCB00196682 /* broken-coordinate.json in Resources */,
 				45E535541C85C2AD005E276C /* canned-response.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

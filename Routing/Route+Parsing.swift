@@ -39,10 +39,10 @@ private func parseRoute(data: NSData?) -> Result<Route> {
             return .Failure(RoutingError.InvalidBoundingBox)
     }
     guard let instructionsJson = json.arrayValueForKey("instructions") as? [[String: AnyObject]] else {
-        return .Failure(RoutingError.FailedToParseJSON)
+        return .Failure(RoutingError.MissingInstructions)
     }
     guard let coordinatesJSON = json.jsonForKey("points")?.arrayValueForKey("coordinates") as? [[Double]] else {
-        return .Failure(RoutingError.FailedToParseJSON)
+        return .Failure(RoutingError.MissingCoordinates)
     }
     return .Success(Route(crs: crs, distance: distance, time: time, instructions: instructionsJson.flatMap(instructionFromJSON), bbox: boundingBox, points: coordinatesJSON.flatMap(pointFromPointArray)))
 }

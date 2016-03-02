@@ -106,4 +106,37 @@ class RouteParsingTests: XCTestCase {
             fail("Unexpected result")
         }
     }
+
+    func testMissingInstructionsReturnsAnError() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("missing-instructions", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        switch result {
+        case .Failure(let error as RoutingError):
+            expect(error).to(equal(RoutingError.MissingInstructions))
+        default:
+            fail("Unexpected result")
+        }
+    }
+
+    func testMissingPointsReturnsAnError() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("missing-coordinates", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        switch result {
+        case .Failure(let error as RoutingError):
+            expect(error).to(equal(RoutingError.MissingCoordinates))
+        default:
+            fail("Unexpected result")
+        }
+    }
+
+    func testDodgyCoordinatesAreIgnored() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("broken-coordinate", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        switch result {
+        case .Success(let route):
+            expect(route.points).to(haveCount(61))
+        default:
+            fail("Unexpected result")
+        }
+    }
 }
