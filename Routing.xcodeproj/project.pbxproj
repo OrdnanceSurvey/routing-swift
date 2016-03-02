@@ -26,6 +26,8 @@
 		45E535521C85B5AF005E276C /* OHHTTPStubs.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535501C85B5A4005E276C /* OHHTTPStubs.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45E535541C85C2AD005E276C /* canned-response.json in Resources */ = {isa = PBXBuildFile; fileRef = 45E535531C85C2AD005E276C /* canned-response.json */; };
 		45E535561C85C2F9005E276C /* TestHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45E535551C85C2F9005E276C /* TestHelpers.swift */; };
+		45FD1E091C86ED8700196682 /* OSJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = 45FD1E071C86ED8700196682 /* OSJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45FD1E0A1C86ED8700196682 /* OSJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 45FD1E081C86ED8700196682 /* OSJSON.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -74,6 +76,8 @@
 		45E535501C85B5A4005E276C /* OHHTTPStubs.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OHHTTPStubs.framework; path = Carthage/Build/iOS/OHHTTPStubs.framework; sourceTree = SOURCE_ROOT; };
 		45E535531C85C2AD005E276C /* canned-response.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "canned-response.json"; sourceTree = "<group>"; };
 		45E535551C85C2F9005E276C /* TestHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestHelpers.swift; sourceTree = "<group>"; };
+		45FD1E071C86ED8700196682 /* OSJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSJSON.h; sourceTree = "<group>"; };
+		45FD1E081C86ED8700196682 /* OSJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSJSON.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,6 +133,8 @@
 				45E535481C859B16005E276C /* Route+Parsing.swift */,
 				45E5354A1C859C7A005E276C /* RoutingService.swift */,
 				45E5354C1C85AE86005E276C /* OSRoutingService.swift */,
+				45FD1E071C86ED8700196682 /* OSJSON.h */,
+				45FD1E081C86ED8700196682 /* OSJSON.m */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -155,6 +161,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45E535231C849D1C005E276C /* Routing.h in Headers */,
+				45FD1E091C86ED8700196682 /* OSJSON.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +270,7 @@
 				45E535471C859741005E276C /* Geometry.swift in Sources */,
 				45E535491C859B16005E276C /* Route+Parsing.swift in Sources */,
 				45E535431C858784005E276C /* CoordinateReferenceSystem.swift in Sources */,
+				45FD1E0A1C86ED8700196682 /* OSJSON.m in Sources */,
 				45E535411C85802A005E276C /* Route.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -21,42 +21,28 @@ extension Route: Parsable {
     }
 }
 
-private typealias JSON = AnyObject
+private typealias JSON = OSJSON
 
 private func parseRoute(data: NSData?) -> Result<Route> {
     guard let data = data else {
         return .Failure(RoutingError.NoDataReceived)
     }
-    let json: JSON
-    do {
-        json = try NSJSONSerialization.JSONObjectWithData(data, options: [])
-    } catch {
-        return .Failure(RoutingError.FailedToParseJSON)
-    }
-    guard let pathsArray = json["paths"] as? [JSON],
-        pathDict = pathsArray.first else {
-            return .Failure(RoutingError.FailedToParseJSON)
-    }
-    guard let crsDict: JSON = pathDict["crs"],
-        crsProps: JSON = crsDict["properties"],
-        crsName = crsProps["name"] as? String,
+    let json = JSON(data: data, initialKeyPath: "paths.@firstObject")
+    guard let crsName = json.jsonForKey("crs")?.jsonForKey("properties")?.stringValueForKey("name"),
         crs = CoordinateReferenceSystem(rawValue: crsName) else {
             return .Failure(RoutingError.FailedToParseJSON)
     }
-    guard let distance = pathDict["distance"] as? Double,
-        time = pathDict["time"] as? Double else {
-            return .Failure(RoutingError.FailedToParseJSON)
-    }
-    guard let bbox = pathDict["bbox"] as? [Double],
+    let distance = json.doubleValueForKey("distance")
+    let time = json.doubleValueForKey("time")
+    guard let bbox = json.arrayValueForKey("bbox") as? [Double],
         boundingBox = try? bboxFromArray(bbox) else {
             return .Failure(RoutingError.FailedToParseJSON)
     }
-    guard let instructionsJson = pathDict["instructions"] as? [[String: JSON]] else {
+    guard let instructionsJson = json.arrayValueForKey("instructions") as? [[String: AnyObject]] else {
         return .Failure(RoutingError.FailedToParseJSON)
     }
-    guard let pointsJson: JSON = pathDict["points"],
-        coordinatesJSON = pointsJson["coordinates"] as? [[Double]] else {
-            return .Failure(RoutingError.FailedToParseJSON)
+    guard let coordinatesJSON = json.jsonForKey("points")?.arrayValueForKey("coordinates") as? [[Double]] else {
+        return .Failure(RoutingError.FailedToParseJSON)
     }
     return .Success(Route(crs: crs, distance: distance, time: time, instructions: instructionsJson.flatMap(instructionFromJSON), bbox: boundingBox, points: coordinatesJSON.flatMap(pointFromPointArray)))
 }
