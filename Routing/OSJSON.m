@@ -30,10 +30,6 @@
     return [self.root objectForKey:key];
 }
 
-- (NSInteger)integerValueForKey:(NSString *)key {
-    return [[self.root objectForKey:key] integerValue];
-}
-
 - (double)doubleValueForKey:(NSString *)key {
     return [[self.root objectForKey:key] doubleValue];
 }

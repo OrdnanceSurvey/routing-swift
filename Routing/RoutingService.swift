@@ -32,6 +32,9 @@ public enum RoutingError: ErrorType {
     case TooFewPoints
     case NoDataReceived
     case FailedToParseJSON
+    case InvalidBoundingBox
+    case MissingInstructions
+    case MissingCoordinates
 }
 
 /// Class to use to fetch routing information

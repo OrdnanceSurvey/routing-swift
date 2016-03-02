@@ -41,13 +41,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSString *_Nullable)stringValueForKey:(NSString *)key;
 
 /**
- *  Get an integer value from the root dictionary
- *
- *  @param key The key for the value
- */
-- (NSInteger)integerValueForKey:(NSString *)key;
-
-/**
  *  Get a double value from the root dictionary
  *
  *  @param key The key for the value

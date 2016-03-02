@@ -88,6 +88,7 @@ class RoutingServiceTests: XCTestCase {
     }
 
     func testItSendsTheRequestCorrectlyForNonVehicleRouting() {
+        service = RoutingService(apiKey: "test-key", vehicleType: .Foot, crs: .EPSG_3857)
         let expectation = expectationWithDescription("Request Received")
         stub(stubTest(.Foot, srs: .EPSG_3857)) { (request) -> OHHTTPStubsResponse in
             return OHHTTPStubsResponse(error: NSError(domain: "", code: 0, userInfo: nil))

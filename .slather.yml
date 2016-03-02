@@ -1,0 +1,6 @@
+coverage_service: coveralls
+ci_service: circleci
+xcodeproj: Routing.xcodeproj
+ignore:
+  - Carthage/*
+  - Example/*

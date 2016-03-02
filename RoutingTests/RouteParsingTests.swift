@@ -15,6 +15,7 @@ class RouteParsingTests: XCTestCase {
 
     private func checkRoute(route: Route) {
         expect(route.crs).to(equal(CoordinateReferenceSystem.EPSG_27700))
+        expect(route.crsString).to(equal("EPSG:27700"))
         expect(route.distance).to(equal(980.831))
         expect(route.time).to(equal(79166))
         let bottomLeft = Point(x: 115047.774463, y: 437159.837797)
@@ -79,6 +80,61 @@ class RouteParsingTests: XCTestCase {
         switch result {
         case .Failure(let error as RoutingError):
             expect(error).to(equal(RoutingError.FailedToParseJSON))
+        default:
+            fail("Unexpected result")
+        }
+    }
+
+    func testDodgyBoundingBoxReturnsSuitableError() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("broken-bounding-box", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        switch result {
+        case .Failure(let error as RoutingError):
+            expect(error).to(equal(RoutingError.InvalidBoundingBox))
+        default:
+            fail("Unexpected result")
+        }
+    }
+
+    func testIncompleteInstructionsAreIgnored() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("incomplete-instruction", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        switch result {
+        case .Success(let route):
+            expect(route.instructions).to(haveCount(3))
+        default:
+            fail("Unexpected result")
+        }
+    }
+
+    func testMissingInstructionsReturnsAnError() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("missing-instructions", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        switch result {
+        case .Failure(let error as RoutingError):
+            expect(error).to(equal(RoutingError.MissingInstructions))
+        default:
+            fail("Unexpected result")
+        }
+    }
+
+    func testMissingPointsReturnsAnError() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("missing-coordinates", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        switch result {
+        case .Failure(let error as RoutingError):
+            expect(error).to(equal(RoutingError.MissingCoordinates))
+        default:
+            fail("Unexpected result")
+        }
+    }
+
+    func testDodgyCoordinatesAreIgnored() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("broken-coordinate", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        switch result {
+        case .Success(let route):
+            expect(route.points).to(haveCount(61))
         default:
             fail("Unexpected result")
         }
