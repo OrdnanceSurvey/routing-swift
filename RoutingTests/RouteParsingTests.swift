@@ -95,4 +95,15 @@ class RouteParsingTests: XCTestCase {
             fail("Unexpected result")
         }
     }
+
+    func testIncompleteInstructionsAreIgnored() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("incomplete-instruction", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        switch result {
+        case .Success(let route):
+            expect(route.instructions).to(haveCount(3))
+        default:
+            fail("Unexpected result")
+        }
+    }
 }
