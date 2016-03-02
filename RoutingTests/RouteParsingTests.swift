@@ -15,6 +15,7 @@ class RouteParsingTests: XCTestCase {
 
     private func checkRoute(route: Route) {
         expect(route.crs).to(equal(CoordinateReferenceSystem.EPSG_27700))
+        expect(route.crsString).to(equal("EPSG:27700"))
         expect(route.distance).to(equal(980.831))
         expect(route.time).to(equal(79166))
         let bottomLeft = Point(x: 115047.774463, y: 437159.837797)
