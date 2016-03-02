@@ -10,17 +10,17 @@ import Fetch
 
 /**
  The vehicle to use for routing. 
- Note `Foot` and `MTB` only provide routing within national parks
+ Note `Foot` and `MountainBike` only provide routing within national parks
  */
 public enum VehicleType: String {
     case Car = "car"
-    case Emv = "emv"
+    case EmergencyVehicle = "emv"
     case Foot = "foot"
     case MountainBike = "mtb"
 
     private func path() -> String {
         switch self {
-        case .Car, .Emv:
+        case .Car, .EmergencyVehicle:
             return "routing_api"
         case .Foot, .MountainBike:
             return "nonvehicle_routing_api"

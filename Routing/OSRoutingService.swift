@@ -57,10 +57,10 @@ public extension OSRoutingService {
     }
 
     /**
-     EMV vehicle type
+     Emergency vehicle type
      */
-    public static func emvVehicleType() -> String {
-        return VehicleType.Emv.rawValue
+    public static func emergencyVehicleType() -> String {
+        return VehicleType.EmergencyVehicle.rawValue
     }
 
     /**
@@ -71,9 +71,9 @@ public extension OSRoutingService {
     }
 
     /**
-     MTB vehicle type
+     Mountain Bike vehicle type
      */
-    public static func mtbVehicleType() -> String {
+    public static func mountainBikeVehicleType() -> String {
         return VehicleType.MountainBike.rawValue
     }
 
