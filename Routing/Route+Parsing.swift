@@ -20,9 +20,11 @@ extension Route: Parsable {
         case 401:
             return .Failure(RoutingError.Unauthorised)
         case 400:
-            return .Failure(badRequestError(data))
+            return .Failure(RoutingError.BadRequest(errorMessage(data)))
+        case 500:
+            return .Failure(RoutingError.ServerError(errorMessage(data)))
         default:
-            return .Failure(NSError(domain: "unimplemented", code: 1, userInfo: nil))
+            return .Failure(RoutingError.UnknownError)
         }
     }
 }
@@ -93,10 +95,10 @@ private func pointFromPointArray(pointArray: [Double]) -> Point? {
     return Point(x: pointArray.first!, y: pointArray.last!)
 }
 
-private func badRequestError(data: NSData?) -> RoutingError {
+private func errorMessage(data: NSData?) -> String {
     guard let data = data else {
-        return .BadRequest("")
+        return ""
     }
     let json = JSON(data: data, initialKeyPath: "error")
-    return .BadRequest(json.stringValueForKey("message") ?? "")
+    return json.stringValueForKey("message") ?? ""
 }

@@ -221,6 +221,36 @@ class RouteParsingTests: XCTestCase {
         default:
             fail("Unexpected result")
         }
+    }
 
+    func testAServerErrorReturnsAnError() {
+        let response = "{\"error\":{\"statuscode\":400,\"message\":\"everything is on fire\"}}"
+        let result = Route.parse(fromData: response.dataUsingEncoding(NSUTF8StringEncoding), withStatus: 500)
+        switch result {
+        case .Failure(let error as RoutingError):
+            switch error {
+            case .ServerError(let message):
+                expect(message).to(equal("everything is on fire"))
+            default:
+                fail("Unexpected result")
+            }
+        default:
+            fail("Unexpected result")
+        }
+    }
+
+    func testAnUnknownResponseReturnsAnError() {
+        let result = Route.parse(fromData: nil, withStatus: 123)
+        switch result {
+        case .Failure(let error as RoutingError):
+            switch error {
+            case .UnknownError:
+                break
+            default:
+                fail("Unexpected result")
+            }
+        default:
+            fail("Unexpected result")
+        }
     }
 }

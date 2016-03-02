@@ -37,6 +37,8 @@ public enum RoutingError: ErrorType {
     case MissingCoordinates
     case Unauthorised
     case BadRequest(String)
+    case ServerError(String)
+    case UnknownError
 }
 
 /// Class to use to fetch routing information
