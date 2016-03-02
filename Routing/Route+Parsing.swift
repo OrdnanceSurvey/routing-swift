@@ -51,9 +51,9 @@ private func bboxFromArray(array: [Double]) throws -> BoundingBox {
     if array.count != 4 {
         throw ParseError.BboxParseError
     }
-    let topLeft = Point(x: array[0], y: array[1])
-    let bottomRight = Point(x: array[2], y: array[3])
-    return BoundingBox(topLeft: topLeft, bottomRight: bottomRight)
+    let bottomLeft = Point(x: array[0], y: array[1])
+    let topRight = Point(x: array[2], y: array[3])
+    return BoundingBox(bottomLeft: bottomLeft, topRight: topRight)
 }
 
 private func instructionFromJSON(dict: [String: AnyObject]) -> Instruction? {

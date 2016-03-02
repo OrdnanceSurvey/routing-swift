@@ -28,12 +28,12 @@ public class Point: NSObject {
  */
 @objc(OSBoundingBox)
 public class BoundingBox: NSObject {
-    public let topLeft: Point
-    public let bottomRight: Point
+    public let bottomLeft: Point
+    public let topRight: Point
 
-    init(topLeft: Point, bottomRight: Point) {
-        self.topLeft = topLeft
-        self.bottomRight = bottomRight
+    init(bottomLeft: Point, topRight: Point) {
+        self.bottomLeft = bottomLeft
+        self.topRight = topRight
         super.init()
     }
 }
@@ -62,5 +62,5 @@ func ==(lhs: Point, rhs: Point) -> Bool {
 }
 
 func ==(lhs: BoundingBox, rhs: BoundingBox) -> Bool {
-    return lhs.bottomRight == rhs.bottomRight && lhs.topLeft == rhs.topLeft
+    return lhs.bottomLeft == rhs.bottomLeft && lhs.topRight == rhs.topRight
 }
