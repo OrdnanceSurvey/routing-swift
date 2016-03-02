@@ -60,17 +60,35 @@ class OSRoutingServiceTests: XCTestCase {
         }
     }
 
-    func testTheServiceCallsItsUnderlyingService() {
+    func createMockService() -> MockService {
         let mockService = MockService(apiKey: "test-key", vehicleType: .Car, crs: .EPSG_27700)
         os_service.routingService = mockService
-        let points = [
-            Point(x: 437165, y: 115640),
-            Point(x: 437387, y: 115174)
-        ]
-        os_service.routeBetweenPoints(points) { (route, error) in
+        return mockService
+    }
+
+    let testPoints = [
+        Point(x: 437165, y: 115640),
+        Point(x: 437387, y: 115174)
+    ]
+
+    func testTheServiceCallsItsUnderlyingService() {
+        let mockService = createMockService()
+        os_service.routeBetweenPoints(testPoints) { (route, error) in
         }
-        expect(mockService.points).to(equal(points))
+        expect(mockService.points).to(equal(testPoints))
         expect(mockService.handler).notTo(beNil())
+    }
+
+    func testASuccessfulResponseIsReturned() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("canned-response", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        let mockService = createMockService()
+        var receivedRoute: Route?
+        os_service.routeBetweenPoints(testPoints) { (route, error) in
+            receivedRoute = route
+        }
+        mockService.handler?(result)
+        expect(receivedRoute).notTo(beNil())
     }
 
 }

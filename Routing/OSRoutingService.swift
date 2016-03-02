@@ -44,7 +44,12 @@ public class OSRoutingService: NSObject {
      */
     public func routeBetweenPoints(points: [Point], completion: (Route?, NSError?) -> Void) {
         routingService.routeBetween(points: points) { result in
-    
+            switch result {
+            case .Success(let route):
+                completion(route, nil)
+            case .Failure(let error):
+                break
+            }
         }
     }
 }
