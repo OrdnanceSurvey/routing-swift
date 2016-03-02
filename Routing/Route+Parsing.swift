@@ -36,7 +36,7 @@ private func parseRoute(data: NSData?) -> Result<Route> {
     let time = json.doubleValueForKey("time")
     guard let bbox = json.arrayValueForKey("bbox") as? [Double],
         boundingBox = try? bboxFromArray(bbox) else {
-            return .Failure(RoutingError.FailedToParseJSON)
+            return .Failure(RoutingError.InvalidBoundingBox)
     }
     guard let instructionsJson = json.arrayValueForKey("instructions") as? [[String: AnyObject]] else {
         return .Failure(RoutingError.FailedToParseJSON)

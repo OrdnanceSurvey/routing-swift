@@ -84,4 +84,15 @@ class RouteParsingTests: XCTestCase {
             fail("Unexpected result")
         }
     }
+
+    func testDodgyBoundingBoxReturnsSuitableError() {
+        let data = NSData(contentsOfURL: Bundle().URLForResource("broken-bounding-box", withExtension: "json")!)!
+        let result = Route.parse(fromData: data, withStatus: 200)
+        switch result {
+        case .Failure(let error as RoutingError):
+            expect(error).to(equal(RoutingError.InvalidBoundingBox))
+        default:
+            fail("Unexpected result")
+        }
+    }
 }
