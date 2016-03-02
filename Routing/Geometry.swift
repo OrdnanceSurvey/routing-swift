@@ -57,7 +57,8 @@ extension BoundingBox {
 }
 
 func ==(lhs: Point, rhs: Point) -> Bool {
-    return lhs.x == rhs.x && lhs.y == rhs.y
+    return fabs(lhs.x.distanceTo(rhs.x)) <= DBL_EPSILON
+        && fabs(lhs.y.distanceTo(rhs.y)) <= DBL_EPSILON
 }
 
 func ==(lhs: BoundingBox, rhs: BoundingBox) -> Bool {
