@@ -13,7 +13,7 @@ import Foundation
  */
 @objc(OSRoutingService)
 public class OSRoutingService: NSObject {
-    var routingService: RoutingService
+    var routingService: RoutingServiceType
 
     /**
      Initialiser
@@ -43,7 +43,9 @@ public class OSRoutingService: NSObject {
      - parameter completion: The completion handler to call
      */
     public func routeBetweenPoints(points: [Point], completion: (Route?, NSError?) -> Void) {
-
+        routingService.routeBetween(points: points) { result in
+    
+        }
     }
 }
 

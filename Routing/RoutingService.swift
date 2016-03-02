@@ -45,6 +45,7 @@ public enum RoutingError: ErrorType {
  *  Routing service type protocol
  */
 public protocol RoutingServiceType {
+
     /**
      Initialiser
 
