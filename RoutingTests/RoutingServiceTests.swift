@@ -23,7 +23,6 @@ class RoutingServiceTests: XCTestCase {
     
     override func tearDown() {
         service = nil
-        OHHTTPStubs.removeAllStubs()
         super.tearDown()
     }
 
@@ -90,6 +89,7 @@ class RoutingServiceTests: XCTestCase {
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(2.0, handler: nil)
+        OHHTTPStubs.removeAllStubs()
     }
 
     func testItSendsTheRequestCorrectlyForNonVehicleRouting() {
@@ -102,5 +102,6 @@ class RoutingServiceTests: XCTestCase {
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(2.0, handler: nil)
+        OHHTTPStubs.removeAllStubs()
     }
 }
