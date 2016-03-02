@@ -28,12 +28,39 @@ public class Point: NSObject {
  */
 @objc(OSBoundingBox)
 public class BoundingBox: NSObject {
-    public let topLeft: Point
-    public let bottomRight: Point
+    public let bottomLeft: Point
+    public let topRight: Point
 
-    init(topLeft: Point, bottomRight: Point) {
-        self.topLeft = topLeft
-        self.bottomRight = bottomRight
+    init(bottomLeft: Point, topRight: Point) {
+        self.bottomLeft = bottomLeft
+        self.topRight = topRight
         super.init()
     }
+}
+
+extension Point {
+    public override func isEqual(object: AnyObject?) -> Bool {
+        guard let otherObject = object as? Point else {
+            return false
+        }
+        return self == otherObject
+    }
+}
+
+extension BoundingBox {
+    public override func isEqual(object: AnyObject?) -> Bool {
+        guard let otherObject = object as? BoundingBox else {
+            return false
+        }
+        return self == otherObject
+    }
+}
+
+func ==(lhs: Point, rhs: Point) -> Bool {
+    return fabs(lhs.x.distanceTo(rhs.x)) <= DBL_EPSILON
+        && fabs(lhs.y.distanceTo(rhs.y)) <= DBL_EPSILON
+}
+
+func ==(lhs: BoundingBox, rhs: BoundingBox) -> Bool {
+    return lhs.bottomLeft == rhs.bottomLeft && lhs.topRight == rhs.topRight
 }
