@@ -35,6 +35,10 @@ public enum RoutingError: ErrorType {
     case InvalidBoundingBox
     case MissingInstructions
     case MissingCoordinates
+    case Unauthorised
+    case BadRequest(String)
+    case ServerError(String)
+    case UnknownError
 }
 
 /// Class to use to fetch routing information

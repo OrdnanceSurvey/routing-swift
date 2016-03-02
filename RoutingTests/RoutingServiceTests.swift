@@ -23,7 +23,6 @@ class RoutingServiceTests: XCTestCase {
     
     override func tearDown() {
         service = nil
-        OHHTTPStubs.removeAllStubs()
         super.tearDown()
     }
 
@@ -38,7 +37,12 @@ class RoutingServiceTests: XCTestCase {
         }
         switch result {
         case .Failure(let error as RoutingError):
-            expect(error).to(equal(RoutingError.TooFewPoints))
+            switch error {
+            case .TooFewPoints:
+                break
+            default:
+                fail("Unexpected result")
+            }
         default:
             fail("Unexpected result received")
         }
@@ -85,6 +89,7 @@ class RoutingServiceTests: XCTestCase {
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(2.0, handler: nil)
+        OHHTTPStubs.removeAllStubs()
     }
 
     func testItSendsTheRequestCorrectlyForNonVehicleRouting() {
@@ -97,5 +102,6 @@ class RoutingServiceTests: XCTestCase {
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(2.0, handler: nil)
+        OHHTTPStubs.removeAllStubs()
     }
 }
