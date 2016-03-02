@@ -41,8 +41,30 @@ public enum RoutingError: ErrorType {
     case UnknownError
 }
 
+/**
+ *  Routing service type protocol
+ */
+public protocol RoutingServiceType {
+    /**
+     Initialiser
+
+     - parameter apiKey:      The API key to use
+     - parameter vehicleType: The vehicle type to use
+     - parameter crs:         The CRS to use. Defaults to EPSG:3857
+     */
+    init(apiKey: String, vehicleType: VehicleType, crs: CoordinateReferenceSystem)
+
+    /**
+     Provide a route between the points specified
+
+     - parameter points:     The points to route between
+     - parameter completion: The completion block to call
+     */
+    func routeBetween(points points: [Point], completion: (Result<Route> -> Void))
+}
+
 /// Class to use to fetch routing information
-public class RoutingService {
+public class RoutingService: RoutingServiceType {
 
     /// The API key to use
     let apiKey: String
@@ -60,10 +82,20 @@ public class RoutingService {
      - parameter vehicleType: The vehicle type to use
      - parameter crs:         The CRS to use. Defaults to EPSG:3857
      */
-    public init(apiKey: String, vehicleType: VehicleType, crs: CoordinateReferenceSystem = .EPSG_3857) {
+    public required init(apiKey: String, vehicleType: VehicleType, crs: CoordinateReferenceSystem) {
         self.apiKey = apiKey
         self.vehicleType = vehicleType
         self.crs = crs
+    }
+
+    /**
+     Convenience initialiser using EPSG:3857 as default spatial reference
+
+     - parameter apiKey:      The API key to use
+     - parameter vehicleType: The vehicle type to use
+     */
+    public convenience init(apiKey: String, vehicleType: VehicleType) {
+        self.init(apiKey: apiKey, vehicleType: vehicleType, crs: .EPSG_3857)
     }
 
     /**

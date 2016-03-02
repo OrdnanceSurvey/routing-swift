@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4549D13B1C873F72005820C0 /* OSRoutingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4549D13A1C873F72005820C0 /* OSRoutingServiceTests.swift */; };
 		45BDFFD51C85CCEC003B419C /* RouteParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BDFFD41C85CCEC003B419C /* RouteParsingTests.swift */; };
 		45E535231C849D1C005E276C /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E535221C849D1C005E276C /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E5352A1C849D1C005E276C /* Routing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; };
@@ -63,6 +64,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4549D13A1C873F72005820C0 /* OSRoutingServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSRoutingServiceTests.swift; sourceTree = "<group>"; };
 		45BDFFD41C85CCEC003B419C /* RouteParsingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteParsingTests.swift; sourceTree = "<group>"; };
 		45E5351F1C849D1C005E276C /* Routing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Routing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E535221C849D1C005E276C /* Routing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Routing.h; sourceTree = "<group>"; };
@@ -167,6 +169,7 @@
 				45E535551C85C2F9005E276C /* TestHelpers.swift */,
 				45BDFFD41C85CCEC003B419C /* RouteParsingTests.swift */,
 				45FD1E0B1C8727AD00196682 /* GeometryTests.swift */,
+				4549D13A1C873F72005820C0 /* OSRoutingServiceTests.swift */,
 			);
 			path = RoutingTests;
 			sourceTree = "<group>";
@@ -302,6 +305,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4549D13B1C873F72005820C0 /* OSRoutingServiceTests.swift in Sources */,
 				45E5354F1C85B527005E276C /* RoutingServiceTests.swift in Sources */,
 				45FD1E0C1C8727AD00196682 /* GeometryTests.swift in Sources */,
 				45E535561C85C2F9005E276C /* TestHelpers.swift in Sources */,
