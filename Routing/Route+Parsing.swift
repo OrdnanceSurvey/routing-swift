@@ -14,10 +14,16 @@ enum ParseError: ErrorType {
 
 extension Route: Parsable {
     public static func parse(fromData data: NSData?, withStatus status: Int) -> Result<Route> {
-        if status == 200 {
+        switch status {
+        case 200:
             return parseRoute(data)
+        case 401:
+            return .Failure(RoutingError.Unauthorised)
+        case 400:
+            return .Failure(badRequestError(data))
+        default:
+            return .Failure(NSError(domain: "unimplemented", code: 1, userInfo: nil))
         }
-        return .Failure(NSError(domain: "unimplemented", code: 1, userInfo: nil))
     }
 }
 
@@ -85,4 +91,12 @@ private func pointFromPointArray(pointArray: [Double]) -> Point? {
         return nil
     }
     return Point(x: pointArray.first!, y: pointArray.last!)
+}
+
+private func badRequestError(data: NSData?) -> RoutingError {
+    guard let data = data else {
+        return .BadRequest("")
+    }
+    let json = JSON(data: data, initialKeyPath: "error")
+    return .BadRequest(json.stringValueForKey("message") ?? "")
 }

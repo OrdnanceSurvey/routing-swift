@@ -38,7 +38,12 @@ class RoutingServiceTests: XCTestCase {
         }
         switch result {
         case .Failure(let error as RoutingError):
-            expect(error).to(equal(RoutingError.TooFewPoints))
+            switch error {
+            case .TooFewPoints:
+                break
+            default:
+                fail("Unexpected result")
+            }
         default:
             fail("Unexpected result received")
         }

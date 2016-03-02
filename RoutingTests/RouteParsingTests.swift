@@ -69,7 +69,12 @@ class RouteParsingTests: XCTestCase {
         let result = Route.parse(fromData: nil, withStatus: 200)
         switch result {
         case .Failure(let error as RoutingError):
-            expect(error).to(equal(RoutingError.NoDataReceived))
+            switch error {
+            case .NoDataReceived:
+                break
+            default:
+                fail("Unexpected result")
+            }
         default:
             fail("Unexpected result")
         }
@@ -79,7 +84,12 @@ class RouteParsingTests: XCTestCase {
         let result = Route.parse(fromData: "{]".dataUsingEncoding(NSUTF8StringEncoding), withStatus: 200)
         switch result {
         case .Failure(let error as RoutingError):
-            expect(error).to(equal(RoutingError.FailedToParseJSON))
+            switch error {
+            case .FailedToParseJSON:
+                break
+            default:
+                fail("Unexpected result")
+            }
         default:
             fail("Unexpected result")
         }
@@ -90,7 +100,12 @@ class RouteParsingTests: XCTestCase {
         let result = Route.parse(fromData: data, withStatus: 200)
         switch result {
         case .Failure(let error as RoutingError):
-            expect(error).to(equal(RoutingError.InvalidBoundingBox))
+            switch error {
+            case .InvalidBoundingBox:
+                break
+            default:
+                fail("Unexpected result")
+            }
         default:
             fail("Unexpected result")
         }
@@ -112,7 +127,12 @@ class RouteParsingTests: XCTestCase {
         let result = Route.parse(fromData: data, withStatus: 200)
         switch result {
         case .Failure(let error as RoutingError):
-            expect(error).to(equal(RoutingError.MissingInstructions))
+            switch error {
+            case .MissingInstructions:
+                break
+            default:
+                fail("Unexpected result")
+            }
         default:
             fail("Unexpected result")
         }
@@ -123,8 +143,13 @@ class RouteParsingTests: XCTestCase {
         let result = Route.parse(fromData: data, withStatus: 200)
         switch result {
         case .Failure(let error as RoutingError):
-            expect(error).to(equal(RoutingError.MissingCoordinates))
-        default:
+            switch error {
+            case .MissingCoordinates:
+                break
+            default:
+                fail("Unexpected result")
+            }
+         default:
             fail("Unexpected result")
         }
     }
@@ -138,5 +163,64 @@ class RouteParsingTests: XCTestCase {
         default:
             fail("Unexpected result")
         }
+    }
+
+    func testAnUnauthorsedResponseReturnsAnError() {
+        let result = Route.parse(fromData: nil, withStatus: 401)
+        switch result {
+        case .Failure(let error as RoutingError):
+            switch error {
+            case .Unauthorised:
+                break
+            default:
+                fail("Unexpected result")
+            }
+        default:
+            fail("Unexpected result")
+        }
+    }
+
+    func testABadRequestReturnsAnError() {
+        let response = "{\"error\":{\"statuscode\":400,\"message\":\"test message\"}}"
+        var result = Route.parse(fromData: response.dataUsingEncoding(NSUTF8StringEncoding), withStatus: 400)
+        switch result {
+        case .Failure(let error as RoutingError):
+            switch error {
+            case .BadRequest(let message):
+                expect(message).to(equal("test message"))
+            default:
+                fail("Unexpected result")
+            }
+        default:
+            fail("Unexpected result")
+        }
+
+        let missingMessage = "{\"error\":{\"statuscode\":400}}"
+        result = Route.parse(fromData: missingMessage.dataUsingEncoding(NSUTF8StringEncoding), withStatus: 400)
+        switch result {
+        case .Failure(let error as RoutingError):
+            switch error {
+            case .BadRequest(let message):
+                expect(message).to(equal(""))
+            default:
+                fail("Unexpected result")
+            }
+        default:
+            fail("Unexpected result")
+        }
+
+        result = Route.parse(fromData: nil, withStatus: 400)
+        switch result {
+        case .Failure(let error as RoutingError):
+            switch error {
+            case .BadRequest(let message):
+                expect(message).to(equal(""))
+            default:
+                fail("Unexpected result")
+            }
+        default:
+            fail("Unexpected result")
+        }
+
     }
 }
