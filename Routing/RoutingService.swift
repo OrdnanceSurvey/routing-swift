@@ -39,6 +39,31 @@ public enum RoutingError: ErrorType {
     case BadRequest(String)
     case ServerError(String)
     case UnknownError
+
+    public func rawValue() -> Int {
+        switch self {
+        case .TooFewPoints:
+            return OSRoutingErrorTooFewPoints
+        case .NoDataReceived:
+            return OSRoutingErrorNoDataReceived
+        case .FailedToParseJSON:
+            return OSRoutingErrorFailedToParseJSON
+        case .InvalidBoundingBox:
+            return OSRoutingErrorInvalidBoundingBox
+        case .MissingInstructions:
+            return OSRoutingErrorMissingInstructions
+        case .MissingCoordinates:
+            return OSRoutingErrorMissingCoordinates
+        case .Unauthorised:
+            return OSRoutingErrorUnauthorised
+        case .BadRequest:
+            return OSRoutingErrorBadRequest
+        case .ServerError:
+            return OSRoutingErrorServerError
+        case .UnknownError:
+            return OSRoutingErrorUnknown
+        }
+    }
 }
 
 /**

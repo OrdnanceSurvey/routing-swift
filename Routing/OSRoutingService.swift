@@ -48,15 +48,25 @@ public class OSRoutingService: NSObject {
             case .Success(let route):
                 completion(route, nil)
             case .Failure(let error as RoutingError):
-
-                break
-            case .Failure(let error as NSError):
-                completion(nil, error)
-            default:
-                break
+                completion(nil, returnErrorFromRoutingError(error))
+            case .Failure(let error):
+                completion(nil, error as NSError)
             }
         }
     }
+}
+
+private func returnErrorFromRoutingError(error: RoutingError) -> NSError {
+    let userInfo: [String: String]?
+    switch error {
+    case .BadRequest(let msg):
+        userInfo = [NSLocalizedDescriptionKey: msg]
+    case .ServerError(let msg):
+        userInfo = [NSLocalizedDescriptionKey: msg]
+    default:
+        userInfo = nil
+    }
+    return NSError(domain: OSRoutingErrorDomain, code: error.rawValue(), userInfo: userInfo)
 }
 
 // MARK: - Vehicle and CRS types

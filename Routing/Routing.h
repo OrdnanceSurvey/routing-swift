@@ -15,3 +15,4 @@ FOUNDATION_EXPORT double RoutingVersionNumber;
 FOUNDATION_EXPORT const unsigned char RoutingVersionString[];
 
 #import "OSJSON.h"
+#import "OSRoutingError.h"

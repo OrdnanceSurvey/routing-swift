@@ -91,16 +91,50 @@ class OSRoutingServiceTests: XCTestCase {
         expect(receivedRoute).notTo(beNil())
     }
 
-    func testANSErrorIsReturned() {
-        let error = NSError(domain: "test-domain", code: 123, userInfo: nil)
-        let result = Result<Route>.Failure(error)
+    func runErrorTest(result: Result<Route>, expectedError: NSError) {
         let mockService = createMockService()
         var receivedError: NSError?
         os_service.routeBetweenPoints(testPoints) { (route, error) in
             receivedError = error
         }
         mockService.handler?(result)
-        expect(receivedError).to(equal(error))
+        expect(receivedError).to(equal(expectedError))
+    }
+
+    func testANSErrorIsReturned() {
+        let error = NSError(domain: "test-domain", code: 123, userInfo: nil)
+        let result = Result<Route>.Failure(error)
+        runErrorTest(result, expectedError: error)
+    }
+
+    func testARoutingErrorWithNoMessageIsReturned() {
+        let cases = [
+            RoutingError.TooFewPoints,
+            RoutingError.NoDataReceived,
+            RoutingError.FailedToParseJSON,
+            RoutingError.InvalidBoundingBox,
+            RoutingError.MissingInstructions,
+            RoutingError.MissingCoordinates,
+            RoutingError.Unauthorised,
+            RoutingError.UnknownError
+        ]
+        cases.forEach { error in
+            let expectedError = NSError(domain: OSRoutingErrorDomain, code: error.rawValue(), userInfo: nil)
+            let result = Result<Route>.Failure(error)
+            runErrorTest(result, expectedError: expectedError)
+        }
+    }
+
+    func testARoutingErrorWithAMessageIsReturned() {
+        let cases = [
+            RoutingError.BadRequest("Test Message"),
+            RoutingError.ServerError("Test Message")
+        ]
+        cases.forEach { error in
+            let expectedError = NSError(domain: OSRoutingErrorDomain, code: error.rawValue(), userInfo: [ NSLocalizedDescriptionKey: "Test Message"])
+            let result = Result<Route>.Failure(error)
+            runErrorTest(result, expectedError: expectedError)
+        }
     }
 
 }
