@@ -16,7 +16,7 @@ public class Point: NSObject {
     public let x: Double
     public let y: Double
 
-    init(x: Double, y: Double) {
+    public init(x: Double, y: Double) {
         self.x = x
         self.y = y
         super.init()
