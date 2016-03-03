@@ -16,6 +16,7 @@
 		45DF5E061C885946001CE505 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DF5E041C885946001CE505 /* Main.storyboard */; };
 		45DF5E081C885946001CE505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DF5E071C885946001CE505 /* Assets.xcassets */; };
 		45DF5E0B1C885946001CE505 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DF5E091C885946001CE505 /* LaunchScreen.storyboard */; };
+		45DF5E111C885A00001CE505 /* APIKEY in Resources */ = {isa = PBXBuildFile; fileRef = 45DF5E101C885A00001CE505 /* APIKEY */; };
 		45E535231C849D1C005E276C /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E535221C849D1C005E276C /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E5352A1C849D1C005E276C /* Routing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; };
 		45E5353A1C84A254005E276C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535391C84A254005E276C /* Nimble.framework */; };
@@ -82,6 +83,7 @@
 		45DF5E071C885946001CE505 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45DF5E0A1C885946001CE505 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45DF5E0C1C885946001CE505 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45DF5E101C885A00001CE505 /* APIKEY */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = APIKEY; sourceTree = SOURCE_ROOT; };
 		45E5351F1C849D1C005E276C /* Routing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Routing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E535221C849D1C005E276C /* Routing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Routing.h; sourceTree = "<group>"; };
 		45E535241C849D1C005E276C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 		45DF5DFF1C885946001CE505 /* ExampleSwift */ = {
 			isa = PBXGroup;
 			children = (
+				45DF5E101C885A00001CE505 /* APIKEY */,
 				45DF5E001C885946001CE505 /* AppDelegate.swift */,
 				45DF5E021C885946001CE505 /* ViewController.swift */,
 				45DF5E041C885946001CE505 /* Main.storyboard */,
@@ -331,6 +334,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				45DF5E0B1C885946001CE505 /* LaunchScreen.storyboard in Resources */,
+				45DF5E111C885A00001CE505 /* APIKEY in Resources */,
 				45DF5E081C885946001CE505 /* Assets.xcassets in Resources */,
 				45DF5E061C885946001CE505 /* Main.storyboard in Resources */,
 			);
@@ -621,6 +625,7 @@
 				45DF5E0E1C885946001CE505 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		45E535191C849D1C005E276C /* Build configuration list for PBXProject "Routing" */ = {
 			isa = XCConfigurationList;
