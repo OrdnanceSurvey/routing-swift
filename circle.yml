@@ -10,3 +10,4 @@ test:
       xcpretty --report html --output $CIRCLE_TEST_REPORTS/results.html --report junit --output $CIRCLE_TEST_REPORTS/results.xml
   post:
     - bundle exec slather
+    - bash <(curl -s https://codecov.io/bash)

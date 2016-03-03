@@ -1,4 +1,4 @@
-coverage_service: coveralls
+coverage_service: cobertura_xml
 ci_service: circleci
 xcodeproj: Routing.xcodeproj
 ignore:
