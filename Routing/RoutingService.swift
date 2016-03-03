@@ -111,9 +111,9 @@ public class RoutingService: Routable {
 
      - parameter apiKey:      The API key to use
      - parameter vehicleType: The vehicle type to use
-     - parameter crs:         The CRS to use. Defaults to EPSG:3857
+     - parameter crs:         The CRS to use. Defaults to WGS:84
      */
-    public init(apiKey: String, vehicleType: VehicleType, crs: CoordinateReferenceSystem = .EPSG_3857) {
+    public init(apiKey: String, vehicleType: VehicleType, crs: CoordinateReferenceSystem = .WGS_84) {
         self.apiKey = apiKey
         self.vehicleType = vehicleType
         self.crs = crs

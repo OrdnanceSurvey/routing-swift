@@ -19,7 +19,7 @@ public class OSRoutingService: NSObject {
      Initialiser
 
      - parameter vehicleType: The vehicle type to use
-     - parameter crs:         The Coordinate Reference System to use, or nil to use the default, EPSG:3857
+     - parameter crs:         The Coordinate Reference System to use, or nil to use the default, WGS:84
      */
     public init(apiKey: String, vehicleType: String, crs: String?) {
         guard let vehicle = VehicleType(rawValue: vehicleType) else {
@@ -100,23 +100,30 @@ public extension OSRoutingService {
     }
 
     /**
+     WGS84 CRS
+     */
+    public static func wgs84CRS() -> String {
+        return CoordinateReferenceSystem.WGS_84.rawValue
+    }
+
+    /**
      BNG CRS
      */
     public static func bngCRS() -> String {
-        return CoordinateReferenceSystem.BNG.rawValue;
+        return CoordinateReferenceSystem.BNG.rawValue
     }
 
     /**
      EPSG:27700
      */
     public static func epsg27700() -> String {
-        return CoordinateReferenceSystem.EPSG_27700.rawValue;
+        return CoordinateReferenceSystem.EPSG_27700.rawValue
     }
 
     /**
      EPSG:3857
      */
     public static func epsg3857() -> String {
-        return CoordinateReferenceSystem.EPSG_3857.rawValue;
+        return CoordinateReferenceSystem.EPSG_3857.rawValue
     }
 }

@@ -36,13 +36,13 @@ class OSRoutingServiceTests: XCTestCase {
         expect(routingService.apiKey).to(equal("test-key"))
     }
 
-    func testItDefaultsTo3857() {
+    func testItDefaultsToWGS84() {
         let service = OSRoutingService(apiKey: "test-key", vehicleType: OSRoutingService.carVehicleType(), crs: nil)
         guard let routingService = service.routingService as? RoutingService else {
             fail("Wrong type of routing service")
             return
         }
-        expect(routingService.crs).to(equal(CoordinateReferenceSystem.EPSG_3857))
+        expect(routingService.crs).to(equal(CoordinateReferenceSystem.WGS_84))
         expect(routingService.vehicleType).to(equal(VehicleType.Car))
         expect(routingService.apiKey).to(equal("test-key"))
     }
