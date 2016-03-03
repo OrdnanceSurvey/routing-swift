@@ -8,6 +8,7 @@
 
 import UIKit
 import MapKit
+import Routing
 
 class ViewController: UIViewController {
 
@@ -18,8 +19,13 @@ class ViewController: UIViewController {
     }
 
     @IBOutlet weak var mapView: MKMapView!
-    
-    
+
+    var routingService: RoutingService!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        routingService = RoutingService(apiKey: apiKey, vehicleType: .Car)
+    }
 
 }
 
