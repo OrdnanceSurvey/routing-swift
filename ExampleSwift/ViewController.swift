@@ -76,7 +76,7 @@ extension ViewController {
     }
 
     func displayRoute(route: Route) {
-        var points = route.points.map { CLLocationCoordinate2D(latitude: $0.y, longitude: $0.x) }
+        var points = route.points.map { CLLocationCoordinate2D(latitude: $0.x, longitude: $0.y) }
         let line = MKPolyline(coordinates: &points , count: points.count)
         mapView.addOverlay(line)
     }
