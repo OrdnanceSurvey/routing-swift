@@ -59,8 +59,8 @@ private func bboxFromArray(array: [Double]) throws -> BoundingBox {
     if array.count != 4 {
         throw ParseError.BboxParseError
     }
-    let bottomLeft = Point(x: array[0], y: array[1])
-    let topRight = Point(x: array[2], y: array[3])
+    let bottomLeft = Point(x: array[1], y: array[0])
+    let topRight = Point(x: array[3], y: array[2])
     return BoundingBox(bottomLeft: bottomLeft, topRight: topRight)
 }
 
@@ -92,7 +92,7 @@ private func pointFromPointArray(pointArray: [Double]) -> Point? {
     guard pointArray.count == 2 else {
         return nil
     }
-    return Point(x: pointArray.first!, y: pointArray.last!)
+    return Point(x: pointArray.last!, y: pointArray.first!)
 }
 
 private func errorMessage(data: NSData?) -> String {

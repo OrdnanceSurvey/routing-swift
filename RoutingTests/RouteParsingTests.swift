@@ -9,6 +9,7 @@
 import XCTest
 import Nimble
 import OHHTTPStubs
+import CoreLocation
 @testable import Routing
 
 class RouteParsingTests: XCTestCase {
@@ -18,12 +19,14 @@ class RouteParsingTests: XCTestCase {
         expect(route.crsString).to(equal("EPSG:27700"))
         expect(route.distance).to(equal(980.831))
         expect(route.time).to(equal(79166))
-        let bottomLeft = Point(x: 115047.774463, y: 437159.837797)
-        let topRight = Point(x: 115640.012446, y: 437421.667735)
+        let bottomLeft = Point(x: 437159.837797, y: 115047.774463)
+        let topRight = Point(x: 437421.667735, y: 115640.012446)
         expect(route.bbox).to(equal(BoundingBox(bottomLeft: bottomLeft, topRight: topRight)))
         expect(route.points).to(haveCount(62))
-        expect(route.points.first).to(equal(Point(x: 115640.012446, y: 437165.490536)))
-        expect(route.points.last).to(equal(Point(x: 115173.178376, y: 437388.106532)))
+        expect(route.points.first).to(equal(Point(x: 437165.490536, y: 115640.012446 )))
+        expect(route.points.last).to(equal(Point(x: 437388.106532, y: 115173.178376)))
+        expect(route.locations).to(haveCount(62))
+        expect(route.locations.first?.latitude).to(equal(437165.490536))
         expect(route.instructions).to(haveCount(4))
         let firstInstruction = route.instructions.first
         expect(firstInstruction?.sign).to(equal(0))

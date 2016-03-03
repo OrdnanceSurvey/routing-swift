@@ -10,6 +10,7 @@ import XCTest
 import Fetch
 import Nimble
 import OHHTTPStubs
+import CoreLocation
 @testable import Routing
 
 class RoutingServiceTests: XCTestCase {
@@ -99,6 +100,30 @@ class RoutingServiceTests: XCTestCase {
             return OHHTTPStubsResponse(error: NSError(domain: "", code: 0, userInfo: nil))
         }
         service.routeBetween(points: [Point(x: 437165, y: 115640), Point(x: 437387, y: 115174)]) { result in
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(2.0, handler: nil)
+        OHHTTPStubs.removeAllStubs()
+    }
+
+
+    func testItSendsTheRequestCorrectlyForLocations() {
+        let stubTest = isScheme("https") &&
+            isHost("api.ordnancesurvey.co.uk") &&
+            isPath("/routing_api/route") &&
+            containsQueryItems([
+                NSURLQueryItem(name: "apikey", value: "test-key"),
+                NSURLQueryItem(name: "point", value: "10.0,11.0"),
+                NSURLQueryItem(name: "point", value: "20.0,21.0"),
+                NSURLQueryItem(name: "srs", value: CoordinateReferenceSystem.EPSG_27700.rawValue),
+                NSURLQueryItem(name: "points_encoded", value: "false"),
+                NSURLQueryItem(name: "vehicle", value: VehicleType.Car.rawValue)
+                ])
+        let expectation = expectationWithDescription("Request Received")
+        stub(stubTest) { (request) -> OHHTTPStubsResponse in
+            return OHHTTPStubsResponse(error: NSError(domain: "", code: 0, userInfo: nil))
+        }
+        service.routeBetween(locations: [CLLocationCoordinate2D(latitude: 10.0, longitude: 11.0), CLLocationCoordinate2D(latitude: 20.0, longitude: 22.0)]) { result in
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(2.0, handler: nil)

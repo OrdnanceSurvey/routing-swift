@@ -7,6 +7,7 @@
 //
 
 import Fetch
+import CoreLocation
 
 /**
  The vehicle to use for routing. 
@@ -92,6 +93,14 @@ public protocol Routable {
      - parameter completion: The completion block to call
      */
     func routeBetween(points points: [Point], completion: (Result<Route> -> Void))
+
+    /**
+     Provide a route between the coordinates specified
+
+     - parameter locations:  The locations to route between
+     - parameter completion: The completion block to call
+     */
+    func routeBetween(locations locations: [CLLocationCoordinate2D], completion: (Result<Route> -> Void))
 }
 
 /// Class to use to fetch routing information
@@ -111,20 +120,14 @@ public class RoutingService: Routable {
 
      - parameter apiKey:      The API key to use
      - parameter vehicleType: The vehicle type to use
-     - parameter crs:         The CRS to use. Defaults to EPSG:3857
+     - parameter crs:         The CRS to use. Defaults to WGS:84
      */
-    public init(apiKey: String, vehicleType: VehicleType, crs: CoordinateReferenceSystem = .EPSG_3857) {
+    public init(apiKey: String, vehicleType: VehicleType, crs: CoordinateReferenceSystem = .WGS_84) {
         self.apiKey = apiKey
         self.vehicleType = vehicleType
         self.crs = crs
     }
 
-    /**
-     Provide a route between the points specified
-
-     - parameter points:     The points to route between
-     - parameter completion: The completion block to call
-     */
     public func routeBetween(points points: [Point], completion: (Result<Route> -> Void)) {
         if points.count < 2 {
             completion(.Failure(RoutingError.TooFewPoints))
@@ -134,6 +137,10 @@ public class RoutingService: Routable {
         get(request) { (result: Result<Route>) in
             completion(result)
         }
+    }
+
+    public func routeBetween(locations locations: [CLLocationCoordinate2D], completion: (Result<Route> -> Void)) {
+        routeBetween(points: locations.map { Point(coordinate: $0) }, completion: completion)
     }
 
     private func urlForPoints(points: [Point]) -> NSURL {
