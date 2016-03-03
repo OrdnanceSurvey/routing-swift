@@ -47,7 +47,7 @@ class OSRoutingServiceTests: XCTestCase {
         expect(routingService.apiKey).to(equal("test-key"))
     }
 
-    class MockService: RoutingServiceType {
+    class MockService: Routable {
         var points: [Point]?
         var handler: (Result<Route> -> Void)?
 

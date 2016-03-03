@@ -83,7 +83,7 @@ public enum RoutingError: ErrorType {
 /**
  *  Routing service type protocol
  */
-public protocol RoutingServiceType {
+public protocol Routable {
 
     /**
      Provide a route between the points specified
@@ -95,7 +95,7 @@ public protocol RoutingServiceType {
 }
 
 /// Class to use to fetch routing information
-public class RoutingService: RoutingServiceType {
+public class RoutingService: Routable {
 
     /// The API key to use
     let apiKey: String

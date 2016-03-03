@@ -13,7 +13,7 @@ import Foundation
  */
 @objc(OSRoutingService)
 public class OSRoutingService: NSObject {
-    var routingService: RoutingServiceType
+    var routingService: Routable
 
     /**
      Initialiser
