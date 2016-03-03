@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MapKit
 
 class ViewController: UIViewController {
 
@@ -15,6 +16,9 @@ class ViewController: UIViewController {
             do { return try String(contentsOfURL: url) } catch { return nil }
             } ?? ""
     }
+
+    @IBOutlet weak var mapView: MKMapView!
+    
     
 
 }
