@@ -64,8 +64,7 @@ extension ViewController {
     }
 
     func updateRoute() {
-        let points = tappedPoints.map { Point(x: $0.latitude, y: $0.longitude) }
-        routingService.routeBetween(points: points) { result in
+        routingService.routeBetween(locations: tappedPoints) { result in
             switch result {
             case .Success(let route):
                 self.displayRoute(route)
@@ -76,8 +75,8 @@ extension ViewController {
     }
 
     func displayRoute(route: Route) {
-        var points = route.points.map { CLLocationCoordinate2D(latitude: $0.x, longitude: $0.y) }
-        let line = MKPolyline(coordinates: &points , count: points.count)
+        var locations = route.locations
+        let line = MKPolyline(coordinates: &locations , count: locations.count)
         mapView.addOverlay(line)
     }
 }
