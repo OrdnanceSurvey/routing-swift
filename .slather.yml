@@ -4,3 +4,4 @@ xcodeproj: Routing.xcodeproj
 ignore:
   - Carthage/*
   - Example/*
+  - RoutingTests/*
