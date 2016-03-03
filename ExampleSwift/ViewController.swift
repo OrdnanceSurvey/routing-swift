@@ -37,6 +37,15 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: MKMapViewDelegate {
+    func mapView(mapView: MKMapView, rendererForOverlay overlay: MKOverlay) -> MKOverlayRenderer {
+        if let overlay = overlay as? MKPolyline {
+            let renderer = MKPolylineRenderer(polyline: overlay)
+            renderer.lineWidth = 3
+            renderer.strokeColor = UIColor.redColor()
+            return renderer
+        }
+        return MKOverlayRenderer(overlay: overlay)
+    }
 }
 
 extension ViewController {
