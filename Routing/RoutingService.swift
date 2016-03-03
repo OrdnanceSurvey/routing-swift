@@ -28,6 +28,20 @@ public enum VehicleType: String {
     }
 }
 
+/**
+ Possible errors emitted by the service
+
+ - TooFewPoints:        At least 2 points are required for routing
+ - NoDataReceived:      No data was received from the server
+ - FailedToParseJSON:   Parsing the JSON response failed
+ - InvalidBoundingBox:  The bounding box received is invalid
+ - MissingInstructions: There are no instructions in the response
+ - MissingCoordinates:  There are no coordinates in the response
+ - Unauthorised:        Request is unauthorised. Check your API key is correct
+ - BadRequest:          Invalid request made. See the payload parameter for the problem
+ - ServerError:         Server error. See the payload parameter for the problem
+ - UnknownError:        Unknown error occurred
+ */
 public enum RoutingError: ErrorType {
     case TooFewPoints
     case NoDataReceived
