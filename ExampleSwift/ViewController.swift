@@ -9,6 +9,7 @@
 import UIKit
 import MapKit
 import Routing
+import CoreLocation
 
 class ViewController: UIViewController {
 
@@ -21,6 +22,8 @@ class ViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
 
     var routingService: RoutingService!
+
+    lazy var tappedPoints = [CLLocationCoordinate2D]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
