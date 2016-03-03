@@ -28,6 +28,20 @@ public enum VehicleType: String {
     }
 }
 
+/**
+ Possible errors emitted by the service
+
+ - TooFewPoints:        At least 2 points are required for routing
+ - NoDataReceived:      No data was received from the server
+ - FailedToParseJSON:   Parsing the JSON response failed
+ - InvalidBoundingBox:  The bounding box received is invalid
+ - MissingInstructions: There are no instructions in the response
+ - MissingCoordinates:  There are no coordinates in the response
+ - Unauthorised:        Request is unauthorised. Check your API key is correct
+ - BadRequest:          Invalid request made. See the payload parameter for the problem
+ - ServerError:         Server error. See the payload parameter for the problem
+ - UnknownError:        Unknown error occurred
+ */
 public enum RoutingError: ErrorType {
     case TooFewPoints
     case NoDataReceived
@@ -39,10 +53,49 @@ public enum RoutingError: ErrorType {
     case BadRequest(String)
     case ServerError(String)
     case UnknownError
+
+    public func rawValue() -> Int {
+        switch self {
+        case .TooFewPoints:
+            return OSRoutingErrorTooFewPoints
+        case .NoDataReceived:
+            return OSRoutingErrorNoDataReceived
+        case .FailedToParseJSON:
+            return OSRoutingErrorFailedToParseJSON
+        case .InvalidBoundingBox:
+            return OSRoutingErrorInvalidBoundingBox
+        case .MissingInstructions:
+            return OSRoutingErrorMissingInstructions
+        case .MissingCoordinates:
+            return OSRoutingErrorMissingCoordinates
+        case .Unauthorised:
+            return OSRoutingErrorUnauthorised
+        case .BadRequest:
+            return OSRoutingErrorBadRequest
+        case .ServerError:
+            return OSRoutingErrorServerError
+        case .UnknownError:
+            return OSRoutingErrorUnknown
+        }
+    }
+}
+
+/**
+ *  Routing service type protocol
+ */
+public protocol Routable {
+
+    /**
+     Provide a route between the points specified
+
+     - parameter points:     The points to route between
+     - parameter completion: The completion block to call
+     */
+    func routeBetween(points points: [Point], completion: (Result<Route> -> Void))
 }
 
 /// Class to use to fetch routing information
-public class RoutingService {
+public class RoutingService: Routable {
 
     /// The API key to use
     let apiKey: String

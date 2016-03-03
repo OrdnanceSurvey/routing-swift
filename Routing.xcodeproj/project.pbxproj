@@ -7,7 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4549D13B1C873F72005820C0 /* OSRoutingServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4549D13A1C873F72005820C0 /* OSRoutingServiceTests.swift */; };
 		45BDFFD51C85CCEC003B419C /* RouteParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45BDFFD41C85CCEC003B419C /* RouteParsingTests.swift */; };
+		45DF5DF81C8826A1001CE505 /* OSRoutingError.h in Headers */ = {isa = PBXBuildFile; fileRef = 45DF5DF61C8826A1001CE505 /* OSRoutingError.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45DF5DF91C8826A1001CE505 /* OSRoutingError.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DF5DF71C8826A1001CE505 /* OSRoutingError.m */; };
 		45E535231C849D1C005E276C /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E535221C849D1C005E276C /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E5352A1C849D1C005E276C /* Routing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; };
 		45E5353A1C84A254005E276C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535391C84A254005E276C /* Nimble.framework */; };
@@ -63,7 +66,10 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		4549D13A1C873F72005820C0 /* OSRoutingServiceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSRoutingServiceTests.swift; sourceTree = "<group>"; };
 		45BDFFD41C85CCEC003B419C /* RouteParsingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouteParsingTests.swift; sourceTree = "<group>"; };
+		45DF5DF61C8826A1001CE505 /* OSRoutingError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OSRoutingError.h; sourceTree = "<group>"; };
+		45DF5DF71C8826A1001CE505 /* OSRoutingError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OSRoutingError.m; sourceTree = "<group>"; };
 		45E5351F1C849D1C005E276C /* Routing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Routing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E535221C849D1C005E276C /* Routing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Routing.h; sourceTree = "<group>"; };
 		45E535241C849D1C005E276C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -147,6 +153,8 @@
 				45E5354C1C85AE86005E276C /* OSRoutingService.swift */,
 				45FD1E071C86ED8700196682 /* OSJSON.h */,
 				45FD1E081C86ED8700196682 /* OSJSON.m */,
+				45DF5DF61C8826A1001CE505 /* OSRoutingError.h */,
+				45DF5DF71C8826A1001CE505 /* OSRoutingError.m */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -167,6 +175,7 @@
 				45E535551C85C2F9005E276C /* TestHelpers.swift */,
 				45BDFFD41C85CCEC003B419C /* RouteParsingTests.swift */,
 				45FD1E0B1C8727AD00196682 /* GeometryTests.swift */,
+				4549D13A1C873F72005820C0 /* OSRoutingServiceTests.swift */,
 			);
 			path = RoutingTests;
 			sourceTree = "<group>";
@@ -180,6 +189,7 @@
 			files = (
 				45E535231C849D1C005E276C /* Routing.h in Headers */,
 				45FD1E091C86ED8700196682 /* OSJSON.h in Headers */,
+				45DF5DF81C8826A1001CE505 /* OSRoutingError.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -290,6 +300,7 @@
 				45E5354B1C859C7A005E276C /* RoutingService.swift in Sources */,
 				45E5354D1C85AE86005E276C /* OSRoutingService.swift in Sources */,
 				45E535451C858BF3005E276C /* Instruction.swift in Sources */,
+				45DF5DF91C8826A1001CE505 /* OSRoutingError.m in Sources */,
 				45E535471C859741005E276C /* Geometry.swift in Sources */,
 				45E535491C859B16005E276C /* Route+Parsing.swift in Sources */,
 				45E535431C858784005E276C /* CoordinateReferenceSystem.swift in Sources */,
@@ -302,6 +313,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4549D13B1C873F72005820C0 /* OSRoutingServiceTests.swift in Sources */,
 				45E5354F1C85B527005E276C /* RoutingServiceTests.swift in Sources */,
 				45FD1E0C1C8727AD00196682 /* GeometryTests.swift in Sources */,
 				45E535561C85C2F9005E276C /* TestHelpers.swift in Sources */,

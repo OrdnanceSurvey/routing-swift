@@ -13,7 +13,7 @@ import Foundation
  */
 @objc(OSRoutingService)
 public class OSRoutingService: NSObject {
-    private let routingService: RoutingService
+    var routingService: Routable
 
     /**
      Initialiser
@@ -43,8 +43,30 @@ public class OSRoutingService: NSObject {
      - parameter completion: The completion handler to call
      */
     public func routeBetweenPoints(points: [Point], completion: (Route?, NSError?) -> Void) {
-
+        routingService.routeBetween(points: points) { result in
+            switch result {
+            case .Success(let route):
+                completion(route, nil)
+            case .Failure(let error as RoutingError):
+                completion(nil, returnErrorFromRoutingError(error))
+            case .Failure(let error):
+                completion(nil, error as NSError)
+            }
+        }
     }
+}
+
+private func returnErrorFromRoutingError(error: RoutingError) -> NSError {
+    let userInfo: [String: String]?
+    switch error {
+    case .BadRequest(let msg):
+        userInfo = [NSLocalizedDescriptionKey: msg]
+    case .ServerError(let msg):
+        userInfo = [NSLocalizedDescriptionKey: msg]
+    default:
+        userInfo = nil
+    }
+    return NSError(domain: OSRoutingErrorDomain, code: error.rawValue(), userInfo: userInfo)
 }
 
 // MARK: - Vehicle and CRS types

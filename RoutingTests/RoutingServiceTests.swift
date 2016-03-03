@@ -72,8 +72,8 @@ class RoutingServiceTests: XCTestCase {
             isPath("/\(vehicle == .Car ? "routing_api" : "nonvehicle_routing_api")/route") &&
             containsQueryItems([
                 NSURLQueryItem(name: "apikey", value: "test-key"),
-                NSURLQueryItem(name: "point", value: "437165,115640"),
-                NSURLQueryItem(name: "point", value: "437387,115174"),
+                NSURLQueryItem(name: "point", value: "437165.0,115640.0"),
+                NSURLQueryItem(name: "point", value: "437387.0,115174.0"),
                 NSURLQueryItem(name: "srs", value: srs.rawValue),
                 NSURLQueryItem(name: "points_encoded", value: "false"),
                 NSURLQueryItem(name: "vehicle", value: vehicle.rawValue)
@@ -103,5 +103,26 @@ class RoutingServiceTests: XCTestCase {
         }
         waitForExpectationsWithTimeout(2.0, handler: nil)
         OHHTTPStubs.removeAllStubs()
+    }
+
+    func testASuccessfulResponseIsReturned() {
+        service = RoutingService(apiKey: "test-key", vehicleType: .Foot, crs: .EPSG_3857)
+        let expectation = expectationWithDescription("Request Received")
+        stub(stubTest(.Foot, srs: .EPSG_3857)) { (request) -> OHHTTPStubsResponse in
+            return fixture(Bundle().pathForResource("canned-response", ofType: "json")!, headers: nil)
+        }
+        var receivedRoute: Route?
+        service.routeBetween(points: [Point(x: 437165, y: 115640), Point(x: 437387, y: 115174)]) { result in
+            switch result {
+            case .Success(let route):
+                receivedRoute = route
+            default:
+                break
+            }
+            expectation.fulfill()
+        }
+        waitForExpectationsWithTimeout(2.0, handler: nil)
+        OHHTTPStubs.removeAllStubs()
+        expect(receivedRoute).notTo(beNil())
     }
 }
