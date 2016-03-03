@@ -7,6 +7,7 @@
 //
 
 import Fetch
+import CoreLocation
 
 /**
  The vehicle to use for routing. 
@@ -92,6 +93,14 @@ public protocol Routable {
      - parameter completion: The completion block to call
      */
     func routeBetween(points points: [Point], completion: (Result<Route> -> Void))
+
+    /**
+     Provide a route between the coordinates specified
+
+     - parameter locations:  The locations to route between
+     - parameter completion: The completion block to call
+     */
+    func routeBetween(locations locations: [CLLocationCoordinate2D], completion: (Result<Route> -> Void))
 }
 
 /// Class to use to fetch routing information
@@ -134,6 +143,10 @@ public class RoutingService: Routable {
         get(request) { (result: Result<Route>) in
             completion(result)
         }
+    }
+
+    public func routeBetween(locations locations: [CLLocationCoordinate2D], completion: (Result<Route> -> Void)) {
+        routeBetween(points: locations.map { Point(coordinate: $0) }, completion: completion)
     }
 
     private func urlForPoints(points: [Point]) -> NSURL {

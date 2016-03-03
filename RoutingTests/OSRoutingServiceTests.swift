@@ -9,6 +9,7 @@
 import XCTest
 import Nimble
 import Fetch
+import CoreLocation
 @testable import Routing
 
 class OSRoutingServiceTests: XCTestCase {
@@ -51,17 +52,18 @@ class OSRoutingServiceTests: XCTestCase {
         var points: [Point]?
         var handler: (Result<Route> -> Void)?
 
-        required init(apiKey: String, vehicleType: VehicleType, crs: CoordinateReferenceSystem) {
-        }
-
         func routeBetween(points points: [Point], completion: (Result<Route> -> Void)) {
             self.points = points
             self.handler = completion
         }
+
+        func routeBetween(locations locations: [CLLocationCoordinate2D], completion: (Result<Route> -> Void)) {
+
+        }
     }
 
     func createMockService() -> MockService {
-        let mockService = MockService(apiKey: "test-key", vehicleType: .Car, crs: .EPSG_27700)
+        let mockService = MockService()
         os_service.routingService = mockService
         return mockService
     }
