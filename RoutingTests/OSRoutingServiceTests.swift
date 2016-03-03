@@ -91,4 +91,16 @@ class OSRoutingServiceTests: XCTestCase {
         expect(receivedRoute).notTo(beNil())
     }
 
+    func testANSErrorIsReturned() {
+        let error = NSError(domain: "test-domain", code: 123, userInfo: nil)
+        let result = Result<Route>.Failure(error)
+        let mockService = createMockService()
+        var receivedError: NSError?
+        os_service.routeBetweenPoints(testPoints) { (route, error) in
+            receivedError = error
+        }
+        mockService.handler?(result)
+        expect(receivedError).to(equal(error))
+    }
+
 }

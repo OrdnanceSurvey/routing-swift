@@ -47,7 +47,12 @@ public class OSRoutingService: NSObject {
             switch result {
             case .Success(let route):
                 completion(route, nil)
-            case .Failure(let error):
+            case .Failure(let error as RoutingError):
+
+                break
+            case .Failure(let error as NSError):
+                completion(nil, error)
+            default:
                 break
             }
         }
