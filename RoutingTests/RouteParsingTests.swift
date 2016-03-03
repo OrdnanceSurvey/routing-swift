@@ -9,6 +9,7 @@
 import XCTest
 import Nimble
 import OHHTTPStubs
+import CoreLocation
 @testable import Routing
 
 class RouteParsingTests: XCTestCase {
@@ -24,6 +25,8 @@ class RouteParsingTests: XCTestCase {
         expect(route.points).to(haveCount(62))
         expect(route.points.first).to(equal(Point(x: 437165.490536, y: 115640.012446 )))
         expect(route.points.last).to(equal(Point(x: 437388.106532, y: 115173.178376)))
+        expect(route.locations).to(haveCount(62))
+        expect(route.locations.first?.latitude).to(equal(437165.490536))
         expect(route.instructions).to(haveCount(4))
         let firstInstruction = route.instructions.first
         expect(firstInstruction?.sign).to(equal(0))

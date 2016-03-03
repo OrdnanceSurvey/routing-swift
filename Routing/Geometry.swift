@@ -28,6 +28,12 @@ public class Point: NSObject {
     }
 }
 
+extension CLLocationCoordinate2D {
+    public init(os_point: Point) {
+        self.init(latitude: os_point.x, longitude: os_point.y)
+    }
+}
+
 /**
  *  Class representing a bounding box
  */
