@@ -89,7 +89,7 @@ class RoutingServiceTests: XCTestCase {
         service.routeBetween(points: [Point(x: 437165, y: 115640), Point(x: 437387, y: 115174)]) { result in
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(1.0, handler: nil)
+        waitForExpectationsWithTimeout(2.0, handler: nil)
         OHHTTPStubs.removeAllStubs()
     }
 
@@ -102,7 +102,7 @@ class RoutingServiceTests: XCTestCase {
         service.routeBetween(points: [Point(x: 437165, y: 115640), Point(x: 437387, y: 115174)]) { result in
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(1.0, handler: nil)
+        waitForExpectationsWithTimeout(2.0, handler: nil)
         OHHTTPStubs.removeAllStubs()
     }
 
@@ -126,7 +126,7 @@ class RoutingServiceTests: XCTestCase {
         service.routeBetween(locations: [CLLocationCoordinate2D(latitude: 10.0, longitude: 11.0), CLLocationCoordinate2D(latitude: 20.0, longitude: 22.0)]) { result in
             expectation.fulfill()
         }
-        waitForExpectationsWithTimeout(1.0, handler: nil)
+        waitForExpectationsWithTimeout(2.0, handler: nil)
         OHHTTPStubs.removeAllStubs()
     }
 
