@@ -28,7 +28,48 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         routingService = RoutingService(apiKey: apiKey, vehicleType: .Car)
+        mapView.delegate = self
+
+        let tap = UITapGestureRecognizer(target: self, action: "mapTapped:")
+        mapView.addGestureRecognizer(tap)
     }
 
+}
+
+extension ViewController: MKMapViewDelegate {
+}
+
+extension ViewController {
+    func mapTapped(tap: UITapGestureRecognizer) {
+        guard tap.state == .Ended else {
+            return
+        }
+        let touchPoint = tap.locationInView(mapView)
+        let touchCoordinate = mapView.convertPoint(touchPoint, toCoordinateFromView: mapView)
+
+        let pointAnnotation = MKPointAnnotation()
+        pointAnnotation.coordinate = touchCoordinate
+        mapView.addAnnotation(pointAnnotation)
+        tappedPoints.append(touchCoordinate)
+        updateRoute()
+    }
+
+    func updateRoute() {
+        let points = tappedPoints.map { Point(x: $0.latitude, y: $0.longitude) }
+        routingService.routeBetween(points: points) { result in
+            switch result {
+            case .Success(let route):
+                self.displayRoute(route)
+            case .Failure(let error):
+                print("Routing failed \(error)")
+            }
+        }
+    }
+
+    func displayRoute(route: Route) {
+        var points = route.points.map { CLLocationCoordinate2D(latitude: $0.y, longitude: $0.x) }
+        let line = MKPolyline(coordinates: &points , count: points.count)
+        mapView.addOverlay(line)
+    }
 }
 
