@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 /**
  *  Class representing a point
@@ -20,6 +21,10 @@ public class Point: NSObject {
         self.x = x
         self.y = y
         super.init()
+    }
+
+    public convenience init(coordinate: CLLocationCoordinate2D) {
+        self.init(x: coordinate.latitude, y: coordinate.longitude)
     }
 }
 
