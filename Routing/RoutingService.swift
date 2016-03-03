@@ -128,12 +128,6 @@ public class RoutingService: Routable {
         self.crs = crs
     }
 
-    /**
-     Provide a route between the points specified
-
-     - parameter points:     The points to route between
-     - parameter completion: The completion block to call
-     */
     public func routeBetween(points points: [Point], completion: (Result<Route> -> Void)) {
         if points.count < 2 {
             completion(.Failure(RoutingError.TooFewPoints))
