@@ -7,21 +7,26 @@
 //
 
 #import "ViewController.h"
+@import Routing;
+@import MapKit;
 
-@interface ViewController ()
-
+@interface ViewController ()<MKMapViewDelegate>
+@property (weak, nonatomic) IBOutlet MKMapView *mapView;
+@property (strong, nonatomic) OSRoutingService *routingService;
 @end
 
 @implementation ViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+- (NSString *)apiKey {
+    return [NSString stringWithContentsOfURL:[NSBundle.mainBundle URLForResource:@"APIKEY" withExtension:nil]
+                                    encoding:NSUTF8StringEncoding
+                                       error:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidLoad {
+    [super viewDidLoad];
+    self.routingService = [[OSRoutingService alloc] initWithApiKey:self.apiKey vehicleType:[OSRoutingService carVehicleType] crs:nil];
+    self.mapView.delegate = self;
 }
 
 @end

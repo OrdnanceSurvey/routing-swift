@@ -28,6 +28,10 @@
 		45DF5E2C1C8D749B001CE505 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45DF5E2B1C8D749B001CE505 /* Assets.xcassets */; };
 		45DF5E2F1C8D749B001CE505 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 45DF5E2D1C8D749B001CE505 /* LaunchScreen.storyboard */; };
 		45DF5E341C8D74A5001CE505 /* APIKEY in Resources */ = {isa = PBXBuildFile; fileRef = 45DF5E101C885A00001CE505 /* APIKEY */; };
+		45DF5E351C8D7544001CE505 /* Fetch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5353D1C84A42D005E276C /* Fetch.framework */; };
+		45DF5E361C8D7544001CE505 /* Fetch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5353D1C84A42D005E276C /* Fetch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45DF5E371C8D7544001CE505 /* Routing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; };
+		45DF5E381C8D7544001CE505 /* Routing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45E535231C849D1C005E276C /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E535221C849D1C005E276C /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E5352A1C849D1C005E276C /* Routing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; };
 		45E5353A1C84A254005E276C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535391C84A254005E276C /* Nimble.framework */; };
@@ -64,6 +68,13 @@
 			remoteGlobalIDString = 45E5351E1C849D1C005E276C;
 			remoteInfo = Routing;
 		};
+		45DF5E391C8D7544001CE505 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 45E535161C849D1C005E276C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 45E5351E1C849D1C005E276C;
+			remoteInfo = Routing;
+		};
 		45E5352B1C849D1C005E276C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 45E535161C849D1C005E276C /* Project object */;
@@ -82,6 +93,18 @@
 			files = (
 				45DF5E131C885A4B001CE505 /* Fetch.framework in Embed Frameworks */,
 				45DF5E151C885A4B001CE505 /* Routing.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		45DF5E3B1C8D7544001CE505 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				45DF5E361C8D7544001CE505 /* Fetch.framework in Embed Frameworks */,
+				45DF5E381C8D7544001CE505 /* Routing.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -166,6 +189,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				45DF5E351C8D7544001CE505 /* Fetch.framework in Frameworks */,
+				45DF5E371C8D7544001CE505 /* Routing.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -334,10 +359,12 @@
 				45DF5E191C8D749B001CE505 /* Sources */,
 				45DF5E1A1C8D749B001CE505 /* Frameworks */,
 				45DF5E1B1C8D749B001CE505 /* Resources */,
+				45DF5E3B1C8D7544001CE505 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				45DF5E3A1C8D7544001CE505 /* PBXTargetDependency */,
 			);
 			name = ExampleObjc;
 			productName = ExampleObjc;
@@ -527,6 +554,11 @@
 			target = 45E5351E1C849D1C005E276C /* Routing */;
 			targetProxy = 45DF5E161C885A4B001CE505 /* PBXContainerItemProxy */;
 		};
+		45DF5E3A1C8D7544001CE505 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 45E5351E1C849D1C005E276C /* Routing */;
+			targetProxy = 45DF5E391C8D7544001CE505 /* PBXContainerItemProxy */;
+		};
 		45E5352C1C849D1C005E276C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 45E5351E1C849D1C005E276C /* Routing */;
@@ -606,6 +638,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ExampleObjc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.os.ExampleObjc;
@@ -617,6 +654,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = ExampleObjc/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = uk.os.ExampleObjc;
@@ -806,6 +848,7 @@
 				45DF5E321C8D749B001CE505 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		45E535191C849D1C005E276C /* Build configuration list for PBXProject "Routing" */ = {
 			isa = XCConfigurationList;
