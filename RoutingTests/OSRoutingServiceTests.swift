@@ -50,6 +50,7 @@ class OSRoutingServiceTests: XCTestCase {
 
     class MockService: Routable {
         var points: [Point]?
+        var locations: [CLLocationCoordinate2D]?
         var handler: (Result<Route> -> Void)?
 
         func routeBetween(points points: [Point], completion: (Result<Route> -> Void)) {
@@ -57,8 +58,9 @@ class OSRoutingServiceTests: XCTestCase {
             self.handler = completion
         }
 
-        func routeBetween(locations locations: [CLLocationCoordinate2D], completion: (Result<Route> -> Void)) {
-
+        func routeBetween(coordinates coordinates: [CLLocationCoordinate2D], completion: (Result<Route> -> Void)) {
+            self.locations = coordinates
+            self.handler = completion
         }
     }
 
@@ -78,6 +80,21 @@ class OSRoutingServiceTests: XCTestCase {
         os_service.routeBetweenPoints(testPoints) { (route, error) in
         }
         expect(mockService.points).to(equal(testPoints))
+        expect(mockService.handler).notTo(beNil())
+    }
+
+    func testTheServiceCallsItsUnderlyingServiceForCoordinates() {
+        let mockService = createMockService()
+        let testLocations = [
+            NSValue.os_valueWithCoordinate(CLLocationCoordinate2D(latitude: 10.0, longitude: 10.0)),
+            NSValue.os_valueWithCoordinate(CLLocationCoordinate2D(latitude: 11.0, longitude: 11.0))
+        ]
+        os_service.routeBetweenCoordinates(testLocations) { (route, error) in
+        }
+        expect(mockService.points).to(equal([
+            Point(coordinate: CLLocationCoordinate2D(latitude: 10.0, longitude: 10.0)),
+            Point(coordinate: CLLocationCoordinate2D(latitude: 11.0, longitude: 11.0))
+            ]))
         expect(mockService.handler).notTo(beNil())
     }
 

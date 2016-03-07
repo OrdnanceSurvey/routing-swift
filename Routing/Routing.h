@@ -16,3 +16,4 @@ FOUNDATION_EXPORT const unsigned char RoutingVersionString[];
 
 #import "OSJSON.h"
 #import "OSRoutingError.h"
+#import "NSValue+Coordinate.h"
