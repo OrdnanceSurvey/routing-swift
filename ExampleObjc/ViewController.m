@@ -61,13 +61,12 @@
 - (void)displayRoute:(OSRoute *)route {
     NSArray *coordinateValues = route.coordinateValues;
     NSInteger numberOfPoints = coordinateValues.count;
-    CLLocationCoordinate2D *coordinates = malloc(sizeof(CLLocationCoordinate2D) * numberOfPoints);
+    CLLocationCoordinate2D coordinates[numberOfPoints];
     for (NSInteger idx = 0; idx < numberOfPoints; idx++) {
         coordinates[idx] = [coordinateValues[idx] os_coordinateValue];
     }
     MKPolyline *line = [MKPolyline polylineWithCoordinates:coordinates count:numberOfPoints];
     [self.mapView addOverlay:line];
-    free(coordinates);
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
