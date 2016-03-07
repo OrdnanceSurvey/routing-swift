@@ -39,6 +39,12 @@ public final class Route: NSObject {
         return points.map { CLLocationCoordinate2D(os_point: $0) }
     }
 
+    /// The coordinates making up the route, wrapped in NSValue so as to be accessible from Objective-C
+    /// Note, this value is nonsense if the crs for the route isn't WGS:84.
+    public var coordinateValues: [NSValue] {
+        return points.map { NSValue.os_valueWithCoordinate(CLLocationCoordinate2D(os_point: $0)) }
+    }
+
     init(crs: CoordinateReferenceSystem, distance: Double, time: Double, instructions: [Instruction], bbox: BoundingBox, points: [Point]) {
         self.crs = crs
         self.distance = distance

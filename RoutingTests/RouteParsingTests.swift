@@ -27,6 +27,8 @@ class RouteParsingTests: XCTestCase {
         expect(route.points.last).to(equal(Point(x: 437388.106532, y: 115173.178376)))
         expect(route.coordinates).to(haveCount(62))
         expect(route.coordinates.first?.latitude).to(equal(437165.490536))
+        expect(route.coordinateValues).to(haveCount(62))
+        expect(route.coordinateValues.first?.os_coordinateValue().latitude).to(equal(437165.490536))
         expect(route.instructions).to(haveCount(4))
         let firstInstruction = route.instructions.first
         expect(firstInstruction?.sign).to(equal(0))
