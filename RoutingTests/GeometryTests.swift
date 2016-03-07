@@ -30,6 +30,15 @@ class GeometryTests: XCTestCase {
         expect(point1).notTo(equal(randomObject))
     }
 
+    func testPointsCanConvertToAndFromCoordinates() {
+        let coordinate = CLLocationCoordinate2D(latitude: 10.0, longitude: 11.0)
+        let point = Point(coordinate: coordinate)
+        expect(point.x).to(equal(10.0))
+        expect(point.y).to(equal(11.0))
+        expect(point.coordinateValue.latitude).to(equal(coordinate.latitude))
+        expect(point.coordinateValue.longitude).to(equal(coordinate.longitude))
+    }
+
     func testBoundingBoxesCanBeEqual() {
         let point1 = Point(x: 1, y: 1)
         let point2 = Point(x: 2, y: 2)
