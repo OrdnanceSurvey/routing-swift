@@ -123,7 +123,7 @@ class RoutingServiceTests: XCTestCase {
         stub(stubTest) { (request) -> OHHTTPStubsResponse in
             return OHHTTPStubsResponse(error: NSError(domain: "", code: 0, userInfo: nil))
         }
-        service.routeBetween(locations: [CLLocationCoordinate2D(latitude: 10.0, longitude: 11.0), CLLocationCoordinate2D(latitude: 20.0, longitude: 22.0)]) { result in
+        service.routeBetween(coordinates: [CLLocationCoordinate2D(latitude: 10.0, longitude: 11.0), CLLocationCoordinate2D(latitude: 20.0, longitude: 22.0)]) { result in
             expectation.fulfill()
         }
         waitForExpectationsWithTimeout(2.0, handler: nil)

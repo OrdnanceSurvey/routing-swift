@@ -97,10 +97,10 @@ public protocol Routable {
     /**
      Provide a route between the coordinates specified
 
-     - parameter locations:  The locations to route between
+     - parameter coordinates:  The locations to route between
      - parameter completion: The completion block to call
      */
-    func routeBetween(locations locations: [CLLocationCoordinate2D], completion: (Result<Route> -> Void))
+    func routeBetween(coordinates coordinates: [CLLocationCoordinate2D], completion: (Result<Route> -> Void))
 }
 
 /// Class to use to fetch routing information
@@ -139,8 +139,8 @@ public class RoutingService: Routable {
         }
     }
 
-    public func routeBetween(locations locations: [CLLocationCoordinate2D], completion: (Result<Route> -> Void)) {
-        routeBetween(points: locations.map { Point(coordinate: $0) }, completion: completion)
+    public func routeBetween(coordinates coordinates: [CLLocationCoordinate2D], completion: (Result<Route> -> Void)) {
+        routeBetween(points: coordinates.map { Point(coordinate: $0) }, completion: completion)
     }
 
     private func urlForPoints(points: [Point]) -> NSURL {

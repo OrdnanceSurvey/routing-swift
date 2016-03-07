@@ -57,8 +57,7 @@ class OSRoutingServiceTests: XCTestCase {
             self.handler = completion
         }
 
-        func routeBetween(locations locations: [CLLocationCoordinate2D], completion: (Result<Route> -> Void)) {
-
+        func routeBetween(coordinates coordinates: [CLLocationCoordinate2D], completion: (Result<Route> -> Void)) {
         }
     }
 

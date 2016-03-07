@@ -64,7 +64,7 @@ extension ViewController {
     }
 
     func updateRoute() {
-        routingService.routeBetween(locations: tappedPoints) { result in
+        routingService.routeBetween(coordinates: tappedPoints) { result in
             switch result {
             case .Success(let route):
                 self.displayRoute(route)
