@@ -44,13 +44,12 @@
     MKPointAnnotation *pointAnnotation = [[MKPointAnnotation alloc] init];
     pointAnnotation.coordinate = touchCoordinate;
     [self.mapView addAnnotation:pointAnnotation];
-    OSPoint *point = [[OSPoint alloc] initWithX:touchCoordinate.latitude y:touchCoordinate.longitude];
-    [self.tappedPoints addObject:point];
+    [self.tappedPoints addObject:[NSValue os_valueWithCoordinate:touchCoordinate]];
     [self updateRoute];
 }
 
 - (void)updateRoute {
-    [self.routingService routeBetweenPoints:self.tappedPoints completion:^(OSRoute *_Nullable route, NSError *_Nullable error) {
+    [self.routingService routeBetweenCoordinates:self.tappedPoints completion:^(OSRoute *_Nullable route, NSError *_Nullable error) {
         if (error) {
             NSLog(@"%@", error);
             return;
@@ -60,12 +59,11 @@
 }
 
 - (void)displayRoute:(OSRoute *)route {
-    NSArray *points = route.points;
-    NSInteger numberOfPoints = route.points.count;
+    NSArray *coordinateValues = route.coordinateValues;
+    NSInteger numberOfPoints = coordinateValues.count;
     CLLocationCoordinate2D *coordinates = malloc(sizeof(CLLocationCoordinate2D) * numberOfPoints);
     for (NSInteger idx = 0; idx < numberOfPoints; idx++) {
-        OSPoint *point = points[idx];
-        coordinates[idx] = point.coordinateValue;
+        coordinates[idx] = [coordinateValues[idx] os_coordinateValue];
     }
     MKPolyline *line = [MKPolyline polylineWithCoordinates:coordinates count:numberOfPoints];
     [self.mapView addOverlay:line];
