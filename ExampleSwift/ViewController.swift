@@ -75,8 +75,8 @@ extension ViewController {
     }
 
     func displayRoute(route: Route) {
-        var locations = route.locations
-        let line = MKPolyline(coordinates: &locations , count: locations.count)
+        var coordinates = route.coordinates
+        let line = MKPolyline(coordinates: &coordinates , count: coordinates.count)
         mapView.addOverlay(line)
     }
 }

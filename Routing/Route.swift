@@ -33,9 +33,9 @@ public final class Route: NSObject {
     /// The points making up the route
     public let points: [Point]
 
-    /// The locations making up the route. 
+    /// The coordinates making up the route.
     /// Note, this value is nonsense if the crs for the route isn't WGS:84.
-    public var locations: [CLLocationCoordinate2D] {
+    public var coordinates: [CLLocationCoordinate2D] {
         return points.map { CLLocationCoordinate2D(os_point: $0) }
     }
 
