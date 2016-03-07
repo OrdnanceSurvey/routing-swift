@@ -32,6 +32,8 @@
 		45DF5E361C8D7544001CE505 /* Fetch.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5353D1C84A42D005E276C /* Fetch.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		45DF5E371C8D7544001CE505 /* Routing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; };
 		45DF5E381C8D7544001CE505 /* Routing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		45DF5E421C8D8E9C001CE505 /* NSValue+Coordinate.h in Headers */ = {isa = PBXBuildFile; fileRef = 45DF5E401C8D8E9C001CE505 /* NSValue+Coordinate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		45DF5E431C8D8E9C001CE505 /* NSValue+Coordinate.m in Sources */ = {isa = PBXBuildFile; fileRef = 45DF5E411C8D8E9C001CE505 /* NSValue+Coordinate.m */; };
 		45E535231C849D1C005E276C /* Routing.h in Headers */ = {isa = PBXBuildFile; fileRef = 45E535221C849D1C005E276C /* Routing.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		45E5352A1C849D1C005E276C /* Routing.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E5351F1C849D1C005E276C /* Routing.framework */; };
 		45E5353A1C84A254005E276C /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 45E535391C84A254005E276C /* Nimble.framework */; };
@@ -147,6 +149,8 @@
 		45DF5E2B1C8D749B001CE505 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		45DF5E2E1C8D749B001CE505 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		45DF5E301C8D749B001CE505 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		45DF5E401C8D8E9C001CE505 /* NSValue+Coordinate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSValue+Coordinate.h"; sourceTree = "<group>"; };
+		45DF5E411C8D8E9C001CE505 /* NSValue+Coordinate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSValue+Coordinate.m"; sourceTree = "<group>"; };
 		45E5351F1C849D1C005E276C /* Routing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Routing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		45E535221C849D1C005E276C /* Routing.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Routing.h; sourceTree = "<group>"; };
 		45E535241C849D1C005E276C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -292,6 +296,8 @@
 				45FD1E081C86ED8700196682 /* OSJSON.m */,
 				45DF5DF61C8826A1001CE505 /* OSRoutingError.h */,
 				45DF5DF71C8826A1001CE505 /* OSRoutingError.m */,
+				45DF5E401C8D8E9C001CE505 /* NSValue+Coordinate.h */,
+				45DF5E411C8D8E9C001CE505 /* NSValue+Coordinate.m */,
 			);
 			path = Routing;
 			sourceTree = "<group>";
@@ -327,6 +333,7 @@
 				45E535231C849D1C005E276C /* Routing.h in Headers */,
 				45FD1E091C86ED8700196682 /* OSJSON.h in Headers */,
 				45DF5DF81C8826A1001CE505 /* OSRoutingError.h in Headers */,
+				45DF5E421C8D8E9C001CE505 /* NSValue+Coordinate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +537,7 @@
 				45E535491C859B16005E276C /* Route+Parsing.swift in Sources */,
 				45E535431C858784005E276C /* CoordinateReferenceSystem.swift in Sources */,
 				45FD1E0A1C86ED8700196682 /* OSJSON.m in Sources */,
+				45DF5E431C8D8E9C001CE505 /* NSValue+Coordinate.m in Sources */,
 				45E535411C85802A005E276C /* Route.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

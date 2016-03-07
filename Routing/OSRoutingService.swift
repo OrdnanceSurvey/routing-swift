@@ -54,6 +54,17 @@ public class OSRoutingService: NSObject {
             }
         }
     }
+
+    /**
+     Create route between the specified coordinates
+
+     - parameter coordinates:  The coordinates to route between, wrapped in `NSValue` objects
+     - parameter completion: The completion handler to call
+     */
+    public func routeBetweenCoordinates(coordinates: [NSValue], completion: (Route?, NSError?) -> Void) {
+        let points = coordinates.map({ Point(coordinate: $0.os_coordinateValue()) })
+        routeBetweenPoints(points, completion: completion)
+    }
 }
 
 private func returnErrorFromRoutingError(error: RoutingError) -> NSError {
