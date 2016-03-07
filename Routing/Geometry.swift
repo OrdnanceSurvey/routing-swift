@@ -17,6 +17,10 @@ public class Point: NSObject {
     public let x: Double
     public let y: Double
 
+    public var coordinateValue: CLLocationCoordinate2D {
+        return CLLocationCoordinate2D(os_point: self)
+    }
+
     public init(x: Double, y: Double) {
         self.x = x
         self.y = y

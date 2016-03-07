@@ -46,6 +46,37 @@
     [self.mapView addAnnotation:pointAnnotation];
     OSPoint *point = [[OSPoint alloc] initWithX:touchCoordinate.latitude y:touchCoordinate.longitude];
     [self.tappedPoints addObject:point];
+    [self updateRoute];
+}
+
+- (void)updateRoute {
+    [self.routingService routeBetweenPoints:self.tappedPoints completion:^(OSRoute *_Nullable route, NSError *_Nullable error) {
+        if (error) {
+            NSLog(@"%@", error);
+            return;
+        }
+        [self displayRoute:route];
+    }];
+}
+
+- (void)displayRoute:(OSRoute *)route {
+    NSArray *points = route.points;
+    NSInteger numberOfPoints = route.points.count;
+    CLLocationCoordinate2D *coordinates = malloc(sizeof(CLLocationCoordinate2D) * numberOfPoints);
+    for (NSInteger idx = 0; idx < numberOfPoints; idx++) {
+        OSPoint *point = points[idx];
+        coordinates[idx] = point.coordinateValue;
+    }
+    MKPolyline *line = [MKPolyline polylineWithCoordinates:coordinates count:numberOfPoints];
+    [self.mapView addOverlay:line];
+    free(coordinates);
+}
+
+- (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id<MKOverlay>)overlay {
+    MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithPolyline:overlay];
+    renderer.strokeColor = [UIColor purpleColor];
+    renderer.lineWidth = 3;
+    return renderer;
 }
 
 @end
