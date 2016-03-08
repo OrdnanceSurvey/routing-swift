@@ -81,3 +81,25 @@ extension ViewController {
     }
 }
 
+extension ViewController {
+    @IBAction func clear() {
+        mapView.overlays.forEach { overlay in
+            mapView.removeOverlay(overlay)
+        }
+        mapView.annotations.forEach { annotation in
+            mapView.removeAnnotation(annotation)
+        }
+        tappedPoints.removeAll()
+    }
+
+    @IBAction func sourceChanged(sender: UISegmentedControl) {
+        clear()
+        switch sender.selectedSegmentIndex {
+        case 0:
+            routingService = RoutingService(apiKey: apiKey, vehicleType: .Car)
+        default:
+            routingService = RoutingService(apiKey: apiKey, vehicleType: .Foot)
+        }
+    }
+
+}

@@ -76,4 +76,27 @@
     return renderer;
 }
 
+#pragma mark - Clear
+- (IBAction)clear:(id)sender {
+    [self.mapView.annotations enumerateObjectsUsingBlock:^(id<MKAnnotation> _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+        [self.mapView removeAnnotation:obj];
+    }];
+    [self.mapView.overlays enumerateObjectsUsingBlock:^(id<MKOverlay> _Nonnull obj, NSUInteger idx, BOOL *_Nonnull stop) {
+        [self.mapView removeOverlay:obj];
+    }];
+    [self.tappedPoints removeAllObjects];
+}
+
+- (IBAction)sourceChanged:(UISegmentedControl *)sender {
+    [self clear:sender];
+    switch (sender.selectedSegmentIndex) {
+        case 0:
+            self.routingService = [[OSRoutingService alloc] initWithApiKey:self.apiKey vehicleType:[OSRoutingService carVehicleType] crs:nil];
+            break;
+        default:
+            self.routingService = [[OSRoutingService alloc] initWithApiKey:self.apiKey vehicleType:[OSRoutingService footVehicleType] crs:nil];
+            break;
+    }
+}
+
 @end
