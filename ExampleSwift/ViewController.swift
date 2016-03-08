@@ -81,3 +81,14 @@ extension ViewController {
     }
 }
 
+extension ViewController {
+    @IBAction func clear() {
+        mapView.overlays.forEach { overlay in
+            mapView.removeOverlay(overlay)
+        }
+        mapView.annotations.forEach { annotation in
+            mapView.removeAnnotation(annotation)
+        }
+        tappedPoints.removeAll()
+    }
+}

@@ -76,4 +76,16 @@
     return renderer;
 }
 
+#pragma mark - Clear
+- (IBAction)clear:(id)sender {
+    [self.mapView.annotations enumerateObjectsUsingBlock:^(id<MKAnnotation>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.mapView removeAnnotation:obj];
+    }];
+    [self.mapView.overlays enumerateObjectsUsingBlock:^(id<MKOverlay>  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        [self.mapView removeOverlay:obj];
+    }];
+    [self.tappedPoints removeAllObjects];
+}
+
+
 @end
