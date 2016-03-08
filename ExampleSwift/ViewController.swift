@@ -91,4 +91,15 @@ extension ViewController {
         }
         tappedPoints.removeAll()
     }
+
+    @IBAction func sourceChanged(sender: UISegmentedControl) {
+        clear()
+        switch sender.selectedSegmentIndex {
+        case 0:
+            routingService = RoutingService(apiKey: apiKey, vehicleType: .Car)
+        default:
+            routingService = RoutingService(apiKey: apiKey, vehicleType: .Foot)
+        }
+    }
+
 }

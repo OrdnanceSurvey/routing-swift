@@ -30,6 +30,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="2Wc-FJ-xxU">
+                        <nil key="title"/>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="TyE-Ra-6yi">
+                            <rect key="frame" x="180" y="7" width="240" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Roads"/>
+                                <segment title="National Parks"/>
+                            </segments>
+                            <connections>
+                                <action selector="sourceChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="UTp-TT-hIG"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="Clear" id="mkQ-Fe-dQE">
                             <connections>
                                 <action selector="clear" destination="BYZ-38-t0r" id="mcd-P3-idY"/>
